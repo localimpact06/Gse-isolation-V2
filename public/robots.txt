@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://gse-isolation.fr/sitemap.xml
