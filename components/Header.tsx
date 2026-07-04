@@ -81,11 +81,18 @@ export default function Header() {
       if (event.key === 'Escape') setOpen(false)
     }
 
+    function onDesktopResize() {
+      if (window.matchMedia('(min-width: 1024px)').matches) setOpen(false)
+    }
+
     document.addEventListener('keydown', onKeyDown)
+    window.addEventListener('resize', onDesktopResize)
+    onDesktopResize()
     document.body.style.overflow = open ? 'hidden' : ''
 
     return () => {
       document.removeEventListener('keydown', onKeyDown)
+      window.removeEventListener('resize', onDesktopResize)
       document.body.style.overflow = ''
     }
   }, [open])
@@ -151,7 +158,7 @@ export default function Header() {
             setOpen(!open)
           }}
           className={
-            'relative ml-2 flex h-11 w-11 shrink-0 items-center justify-center rounded-full border transition-colors duration-300 ' +
+            'relative ml-2 flex h-11 w-11 shrink-0 items-center justify-center rounded-full border transition-colors duration-300 lg:hidden ' +
             (elevated ? 'border-ink/10 bg-ink text-white' : 'border-white/20 bg-white/10 text-white')
           }
           whileTap={{ scale: 0.94 }}
@@ -176,7 +183,7 @@ export default function Header() {
       <AnimatePresence>
         {open && (
           <motion.div
-            className="mx-auto mt-3 max-w-7xl overflow-hidden rounded-[28px] border border-white/10 bg-ink/95 shadow-[0_24px_70px_rgba(0,0,0,0.24)] backdrop-blur-2xl"
+            className="mx-auto mt-3 max-w-7xl overflow-hidden rounded-[28px] border border-white/10 bg-ink/95 shadow-[0_24px_70px_rgba(0,0,0,0.24)] backdrop-blur-2xl lg:hidden"
             initial={{ opacity: 0, y: -10, scale: 0.98 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: -8, scale: 0.98 }}
