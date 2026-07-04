@@ -10,7 +10,7 @@ export default function HomeHero() {
   return (
     <section className="relative isolate overflow-hidden bg-ink pt-28 text-white sm:pt-32 lg:pt-36">
       <img
-        src="/hero-chantier.webp"
+        src="https://raw.githubusercontent.com/localimpact06/Gse-isolation-V2/main/public/hero-chantier.webp"
         alt=""
         aria-hidden="true"
         className="pointer-events-none absolute inset-0 z-0 h-full w-full scale-[1.04] select-none object-cover animate-[heroZoom_28s_ease-in-out_infinite_alternate]"
