@@ -8,14 +8,16 @@ const proofs = [
 
 export default function HomeHero() {
   return (
-    <section className="relative isolate overflow-hidden bg-ink pt-28 text-white sm:pt-32 lg:pt-36">
+    <section
+      className="relative isolate overflow-hidden bg-ink bg-cover bg-no-repeat pt-28 text-white sm:pt-32 lg:pt-36"
+      style={{
+        backgroundImage: "url('/hero-chantier.webp'), url('https://raw.githubusercontent.com/localimpact06/Gse-isolation-V2/main/public/hero-chantier.webp')",
+        backgroundPosition: '70% center',
+      }}
+    >
       <div
         aria-hidden="true"
-        className="pointer-events-none absolute inset-0 z-0 scale-[1.04] bg-cover bg-no-repeat animate-[heroZoom_28s_ease-in-out_infinite_alternate]"
-        style={{
-          backgroundImage: "url('https://raw.githubusercontent.com/localimpact06/Gse-isolation-V2/main/public/hero-chantier.webp')",
-          backgroundPosition: '70% center',
-        }}
+        className="pointer-events-none absolute inset-0 z-0 bg-[inherit] bg-cover bg-no-repeat animate-[heroZoom_28s_ease-in-out_infinite_alternate]"
       />
       <div className="absolute inset-0 z-10 bg-[linear-gradient(90deg,rgba(0,0,0,0.45)_0%,rgba(0,0,0,0.40)_38%,rgba(0,0,0,0.35)_58%,rgba(0,0,0,0.12)_100%)]" />
       <div className="absolute inset-x-0 bottom-0 z-20 h-px bg-white/10" />
