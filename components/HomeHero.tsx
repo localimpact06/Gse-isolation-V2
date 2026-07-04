@@ -10,13 +10,13 @@ export default function HomeHero() {
   return (
     <section className="relative isolate overflow-hidden bg-ink pt-28 text-white sm:pt-32 lg:pt-36">
       <div
-        className="absolute inset-0 -z-20 scale-[1.04] animate-[heroZoom_28s_ease-in-out_infinite_alternate] bg-[url('/hero-chantier.webp')] bg-cover bg-[position:68%_center] sm:bg-[position:70%_center] lg:bg-[position:72%_center]"
+        className="absolute inset-0 z-0 scale-[1.04] animate-[heroZoom_28s_ease-in-out_infinite_alternate] bg-[url('/hero-chantier.webp')] bg-cover bg-[position:68%_center] sm:bg-[position:70%_center] lg:bg-[position:72%_center]"
         aria-hidden="true"
       />
-      <div className="absolute inset-0 -z-10 bg-[linear-gradient(90deg,rgba(0,0,0,0.45)_0%,rgba(0,0,0,0.40)_38%,rgba(0,0,0,0.35)_58%,rgba(0,0,0,0.12)_100%)]" />
-      <div className="absolute inset-x-0 bottom-0 h-px bg-white/10" />
+      <div className="absolute inset-0 z-10 bg-[linear-gradient(90deg,rgba(0,0,0,0.45)_0%,rgba(0,0,0,0.40)_38%,rgba(0,0,0,0.35)_58%,rgba(0,0,0,0.12)_100%)]" />
+      <div className="absolute inset-x-0 bottom-0 z-20 h-px bg-white/10" />
 
-      <div className="relative mx-auto flex min-h-[720px] max-w-7xl items-center px-6 pb-16 pt-10 md:px-10 lg:min-h-[760px] lg:pb-20 lg:pt-12">
+      <div className="relative z-20 mx-auto flex min-h-[720px] max-w-7xl items-center px-6 pb-16 pt-10 md:px-10 lg:min-h-[760px] lg:pb-20 lg:pt-12">
         <div className="max-w-3xl">
           <Reveal y={18}>
             <span className="mb-5 block text-[12px] font-bold uppercase tracking-[0.22em] text-green">
