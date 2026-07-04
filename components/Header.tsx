@@ -15,6 +15,8 @@ const links = [
   { href: '/contact/', label: 'Contact' },
 ]
 
+const desktopLinks = links.slice(0, 6)
+const secondaryLinks = links.slice(6)
 const easing = [0.22, 1, 0.36, 1]
 
 function NavLink({ href, label, light }: { href: string; label: string; light: boolean }) {
@@ -39,12 +41,15 @@ function NavLink({ href, label, light }: { href: string; label: string; light: b
   )
 }
 
-function MobileNavLink({ href, label, onClick }: { href: string; label: string; onClick: () => void }) {
+function MobileNavLink({ href, label, onClick, className = '' }: { href: string; label: string; onClick: () => void; className?: string }) {
   return (
     <motion.a
       href={href}
       onClick={onClick}
-      className="group flex items-center justify-between border-b border-white/10 py-4 text-[15px] font-bold uppercase tracking-[0.12em] text-white/86 transition-colors hover:text-white"
+      className={
+        'group flex items-center justify-between border-b border-white/10 py-4 text-[15px] font-bold uppercase tracking-[0.12em] text-white/86 transition-colors hover:text-white ' +
+        className
+      }
       variants={{
         closed: { opacity: 0, x: -14 },
         open: { opacity: 1, x: 0 },
@@ -89,10 +94,10 @@ export default function Header() {
   const light = !elevated
 
   return (
-    <header className="fixed left-0 right-0 top-0 z-50 px-3 pt-3 sm:px-5 xl:px-8">
+    <header className="fixed left-0 right-0 top-0 z-50 px-3 pt-3 sm:px-5 lg:px-6 xl:px-8">
       <motion.div
         className={
-          'mx-auto flex h-[68px] max-w-7xl items-center justify-between rounded-full border px-4 transition-all duration-500 sm:h-[74px] sm:px-5 xl:px-6 ' +
+          'mx-auto flex h-[68px] max-w-7xl items-center justify-between rounded-full border px-4 transition-all duration-500 sm:h-[74px] sm:px-5 lg:px-4 xl:px-6 ' +
           (elevated
             ? 'border-white/70 bg-white/[.78] text-ink shadow-[0_18px_60px_rgba(18,18,18,0.14)] backdrop-blur-2xl supports-[backdrop-filter]:bg-white/70'
             : 'border-white/[.12] bg-ink/10 text-white shadow-[0_18px_60px_rgba(0,0,0,0.10)] backdrop-blur-md')
@@ -108,7 +113,7 @@ export default function Header() {
         <motion.nav
           aria-label="Navigation principale"
           className={
-            'mx-4 hidden min-w-0 flex-1 items-center justify-center rounded-full border px-4 py-1.5 backdrop-blur-xl xl:flex ' +
+            'mx-3 hidden min-w-0 flex-1 items-center justify-center rounded-full border px-3 py-1.5 backdrop-blur-xl lg:flex xl:mx-4 xl:px-4 ' +
             (light ? 'border-white/10 bg-white/[.08]' : 'border-ink/5 bg-white/[.42]')
           }
           initial="closed"
@@ -118,17 +123,17 @@ export default function Header() {
             open: { opacity: 1, transition: { staggerChildren: 0.035, delayChildren: 0.08 } },
           }}
         >
-          <div className="flex w-full items-center justify-center gap-3 2xl:gap-5">
-            {links.map(function (link) {
+          <div className="flex w-full items-center justify-center gap-2 xl:gap-3 2xl:gap-5">
+            {desktopLinks.map(function (link) {
               return <NavLink key={link.href} href={link.href} label={link.label} light={light} />
             })}
           </div>
         </motion.nav>
 
-        <div className="hidden shrink-0 items-center xl:flex">
+        <div className="hidden shrink-0 items-center lg:flex">
           <motion.a
             href="/contact/"
-            className="group relative isolate overflow-hidden rounded-full bg-ink px-5 py-3 text-[12px] font-bold uppercase tracking-[0.12em] text-white shadow-[0_14px_34px_rgba(18,18,18,0.18)] transition-colors hover:bg-green-dark 2xl:px-6"
+            className="group relative isolate overflow-hidden rounded-full bg-ink px-4 py-3 text-[11px] font-bold uppercase tracking-[0.1em] text-white shadow-[0_14px_34px_rgba(18,18,18,0.18)] transition-colors hover:bg-green-dark xl:px-5 xl:text-[12px] 2xl:px-6"
             whileHover={{ y: -2, scale: 1.015 }}
             whileTap={{ scale: 0.98 }}
             transition={{ duration: 0.22, ease: easing }}
@@ -146,7 +151,7 @@ export default function Header() {
             setOpen(!open)
           }}
           className={
-            'relative flex h-11 w-11 shrink-0 items-center justify-center rounded-full border transition-colors duration-300 xl:hidden ' +
+            'relative ml-2 flex h-11 w-11 shrink-0 items-center justify-center rounded-full border transition-colors duration-300 ' +
             (elevated ? 'border-ink/10 bg-ink text-white' : 'border-white/20 bg-white/10 text-white')
           }
           whileTap={{ scale: 0.94 }}
@@ -171,7 +176,7 @@ export default function Header() {
       <AnimatePresence>
         {open && (
           <motion.div
-            className="mx-auto mt-3 max-w-7xl overflow-hidden rounded-[28px] border border-white/10 bg-ink/95 shadow-[0_24px_70px_rgba(0,0,0,0.24)] backdrop-blur-2xl xl:hidden"
+            className="mx-auto mt-3 max-w-7xl overflow-hidden rounded-[28px] border border-white/10 bg-ink/95 shadow-[0_24px_70px_rgba(0,0,0,0.24)] backdrop-blur-2xl"
             initial={{ opacity: 0, y: -10, scale: 0.98 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: -8, scale: 0.98 }}
@@ -188,7 +193,20 @@ export default function Header() {
                 open: { opacity: 1, transition: { staggerChildren: 0.045, delayChildren: 0.05 } },
               }}
             >
-              {links.map(function (link) {
+              {desktopLinks.map(function (link) {
+                return (
+                  <MobileNavLink
+                    key={link.href}
+                    href={link.href}
+                    label={link.label}
+                    className="lg:hidden"
+                    onClick={function () {
+                      setOpen(false)
+                    }}
+                  />
+                )
+              })}
+              {secondaryLinks.map(function (link) {
                 return (
                   <MobileNavLink
                     key={link.href}
