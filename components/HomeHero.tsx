@@ -2,15 +2,18 @@ import Reveal from './Reveal'
 
 const proofs = [
   { value: '15+', label: "ans d'expérience" },
-  { value: '06 / 83', label: 'Alpes-Maritimes & Var' },
+  { value: '06 / 83', label: "Alpes-Maritimes & Var" },
   { value: 'RGE', label: 'qualité certifiée' },
 ]
 
 export default function HomeHero() {
   return (
     <section className="relative isolate overflow-hidden bg-ink pt-28 text-white sm:pt-32 lg:pt-36">
-      <div
-        className="absolute inset-0 z-0 scale-[1.04] animate-[heroZoom_28s_ease-in-out_infinite_alternate] bg-[url('/hero-chantier.jpg')] bg-cover bg-[position:68%_center] sm:bg-[position:70%_center] lg:bg-[position:72%_center]"
+      <img
+        src="/hero-chantier.webp"
+        alt=""
+        className="pointer-events-none absolute inset-0 z-0 h-full w-full scale-[1.04] select-none object-cover animate-[heroZoom_28s_ease-in-out_infinite_alternate]"
+        style={{ objectPosition: '70% center' }}
         aria-hidden="true"
       />
       <div className="absolute inset-0 z-10 bg-[linear-gradient(90deg,rgba(0,0,0,0.45)_0%,rgba(0,0,0,0.40)_38%,rgba(0,0,0,0.35)_58%,rgba(0,0,0,0.12)_100%)]" />
