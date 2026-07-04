@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import Header from '@/components/Header'
 import Footer from '@/components/Footer'
+import HomeHero from '@/components/HomeHero'
 import Reveal from '@/components/Reveal'
 import Testimonials from '@/components/Testimonials'
 import { servicesIso } from '@/lib/services-iso'
@@ -16,51 +17,7 @@ export default function Home() {
   return (
     <>
       <Header />
-
-      {/* HERO — texte sur noir à gauche, photo à droite, diagonale */}
-      <section className="relative bg-ink overflow-hidden pt-20">
-        <div className="relative grid lg:grid-cols-2 min-h-[640px] lg:min-h-[760px]">
-          {/* Côté texte */}
-          <div className="relative z-10 flex flex-col justify-center px-6 md:px-12 py-20 lg:py-0">
-            <Reveal>
-              <span className="text-green text-[12px] uppercase tracking-[0.2em] mb-5 block">
-                Rénovation énergétique
-              </span>
-            </Reveal>
-            <Reveal delay={0.08}>
-              <h1 className="text-white font-extrabold text-[2.6rem] sm:text-5xl lg:text-[3.4rem] leading-[1.05] tracking-tightest">
-                Rénover aujourd'hui.
-              </h1>
-            </Reveal>
-            <Reveal delay={0.16}>
-              <h1 className="text-green font-extrabold text-[2.6rem] sm:text-5xl lg:text-[3.4rem] leading-[1.05] tracking-tightest mb-7">
-                Économiser pendant 30 ans.
-              </h1>
-            </Reveal>
-            <Reveal delay={0.24}>
-              <p className="text-white/60 text-[15px] leading-relaxed max-w-md mb-9">
-                Spécialistes de l'isolation thermique, nous améliorons la performance énergétique de votre habitat pour plus de confort et des économies durables.
-              </p>
-            </Reveal>
-            <Reveal delay={0.32}>
-              <div className="flex flex-wrap gap-4">
-                <a href="/realisations/" className="bg-green hover:bg-green-dark transition-colors text-white text-[13px] font-semibold uppercase tracking-[0.08em] px-7 py-4 rounded-full inline-flex items-center gap-2">
-                  Nos réalisations <span>→</span>
-                </a>
-                <a href="/solutions/" className="border border-white/25 hover:border-white/60 transition-colors text-white text-[13px] font-semibold uppercase tracking-[0.08em] px-7 py-4 rounded-full inline-flex items-center gap-2">
-                  Découvrir nos solutions <span>→</span>
-                </a>
-              </div>
-            </Reveal>
-          </div>
-
-          {/* Côté photo (SVG provisoire — vraie photo à intégrer) */}
-          <div className="relative min-h-[320px] lg:min-h-0">
-            <HeroHouseSVG />
-            <div className="absolute inset-0 bg-gradient-to-r from-ink via-ink/10 to-transparent lg:block" />
-          </div>
-        </div>
-      </section>
+      <HomeHero />
 
       {/* 4 POINTS FORTS — icônes fines, fond clair */}
       <section className="bg-paper border-b border-ink/5">
@@ -254,30 +211,4 @@ function IconWindow() {
 }
 function IconFan() {
   return <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#3FA66B" strokeWidth="1.4"><circle cx="12" cy="12" r="2" /><path d="M12 10c0-3 1-6 4-6s2 4-1 6" /><path d="M14 12c3 0 6 1 6 4s-4 2-6-1" /><path d="M12 14c0 3-1 6-4 6s-2-4 1-6" /></svg>
-}
-
-function HeroHouseSVG() {
-  return (
-    <svg viewBox="0 0 800 700" className="absolute inset-0 w-full h-full" preserveAspectRatio="xMidYMid slice">
-      <defs>
-        <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
-          <stop offset="0%" stopColor="#1a2530" />
-          <stop offset="100%" stopColor="#2a3a35" />
-        </linearGradient>
-      </defs>
-      <rect width="800" height="700" fill="url(#sky)" />
-      <rect y="560" width="800" height="140" fill="#1c2420" />
-      {/* Maison contemporaine simplifiée */}
-      <g transform="translate(150,200)">
-        <rect x="0" y="120" width="500" height="240" fill="#caa86a" opacity="0.9" />
-        <rect x="0" y="60" width="500" height="60" fill="#3a2a1a" />
-        <rect x="40" y="150" width="140" height="180" fill="#0f1a16" />
-        <rect x="48" y="158" width="124" height="164" fill="#e8c878" opacity="0.85" />
-        <rect x="220" y="150" width="240" height="120" fill="#0f1a16" />
-        <rect x="228" y="158" width="224" height="104" fill="#e8c878" opacity="0.7" />
-        <rect x="-10" y="50" width="520" height="14" fill="#5a4a30" />
-      </g>
-      <circle cx="650" cy="120" r="50" fill="#e8c878" opacity="0.08" />
-    </svg>
-  )
 }
