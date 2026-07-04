@@ -9,19 +9,17 @@ const proofs = [
 export default function HomeHero() {
   return (
     <section className="relative isolate overflow-hidden bg-ink pt-28 text-white sm:pt-32 lg:pt-36">
-      <picture aria-hidden="true" className="pointer-events-none absolute inset-0 z-0 h-full w-full">
-        <source srcSet="hero-chantier.webp" type="image/webp" />
-        <img
-          src="hero-chantier.jpg"
-          alt=""
-          className="h-full w-full scale-[1.04] select-none object-cover animate-[heroZoom_28s_ease-in-out_infinite_alternate]"
-          style={{ objectPosition: '70% center' }}
-        />
-      </picture>
-      <div className="absolute inset-0 z-10 bg-[linear-gradient(90deg,rgba(0,0,0,0.45)_0%,rgba(0,0,0,0.40)_38%,rgba(0,0,0,0.35)_58%,rgba(0,0,0,0.12)_100%)]" />
-      <div className="absolute inset-x-0 bottom-0 z-20 h-px bg-white/10" />
+      <img
+        src="/hero-chantier.webp"
+        alt=""
+        aria-hidden="true"
+        className="pointer-events-none absolute inset-0 -z-20 h-full w-full scale-[1.04] select-none object-cover animate-[heroZoom_28s_ease-in-out_infinite_alternate]"
+        style={{ objectPosition: '70% center' }}
+      />
+      <div className="absolute inset-0 -z-10 bg-[linear-gradient(90deg,rgba(0,0,0,0.45)_0%,rgba(0,0,0,0.40)_38%,rgba(0,0,0,0.35)_58%,rgba(0,0,0,0.12)_100%)]" />
+      <div className="absolute inset-x-0 bottom-0 h-px bg-white/10" />
 
-      <div className="relative z-20 mx-auto flex min-h-[720px] max-w-7xl items-center px-6 pb-16 pt-10 md:px-10 lg:min-h-[760px] lg:pb-20 lg:pt-12">
+      <div className="relative mx-auto flex min-h-[720px] max-w-7xl items-center px-6 pb-16 pt-10 md:px-10 lg:min-h-[760px] lg:pb-20 lg:pt-12">
         <div className="max-w-3xl">
           <Reveal y={18}>
             <span className="mb-5 block text-[12px] font-bold uppercase tracking-[0.22em] text-green">
