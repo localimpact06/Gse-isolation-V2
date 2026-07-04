@@ -10,7 +10,7 @@ export default function HomeHero() {
   return (
     <section className="relative isolate overflow-hidden bg-ink pt-28 text-white sm:pt-32 lg:pt-36">
       <div
-        className="absolute inset-0 -z-20 scale-[1.04] animate-[heroZoom_28s_ease-in-out_infinite_alternate] bg-[url('/hero-chantier.jpg')] bg-cover bg-[position:68%_center] sm:bg-[position:70%_center] lg:bg-[position:72%_center]"
+        className="absolute inset-0 -z-20 scale-[1.04] animate-[heroZoom_28s_ease-in-out_infinite_alternate] bg-[url('/hero-chantier.webp')] bg-cover bg-[position:68%_center] sm:bg-[position:70%_center] lg:bg-[position:72%_center]"
         aria-hidden="true"
       />
       <div className="absolute inset-0 -z-10 bg-[linear-gradient(90deg,rgba(0,0,0,0.45)_0%,rgba(0,0,0,0.40)_38%,rgba(0,0,0,0.35)_58%,rgba(0,0,0,0.12)_100%)]" />
