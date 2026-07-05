@@ -4,7 +4,6 @@ import Footer from '@/components/Footer'
 import HomeHero from '@/components/HomeHero'
 import Reveal from '@/components/Reveal'
 import Testimonials from '@/components/Testimonials'
-import { servicesIso } from '@/lib/services-iso'
 import { villes } from '@/lib/villes'
 
 export const metadata: Metadata = {
@@ -66,37 +65,59 @@ export default function Home() {
         </div>
       </section>
 
-      {/* SOLUTIONS — cards avec photo (SVG provisoire) */}
-      <section className="bg-white py-24 px-6 md:px-10">
+      {/* SOLUTIONS */}
+      <section className="bg-white px-6 py-28 md:px-10 lg:py-36">
         <div className="max-w-7xl mx-auto">
           <Reveal>
-            <div className="grid lg:grid-cols-2 gap-10 items-end mb-14">
-              <div>
+            <div className="mb-16 grid gap-10 lg:grid-cols-[0.9fr_1.1fr] lg:items-end">
+              <div className="max-w-2xl">
                 <span className="text-green text-[12px] uppercase tracking-[0.2em]">Nos solutions</span>
-                <h2 className="text-4xl md:text-5xl font-extrabold tracking-tightest mt-4 mb-6">
-                  Une approche globale pour une performance durable.
+                <h2 className="mt-5 text-4xl font-extrabold tracking-tightest text-ink md:text-5xl">
+                  Des prestations pensées pour améliorer durablement votre habitat.
                 </h2>
-                <p className="text-ink/55 text-[15px] leading-relaxed max-w-md mb-6">
-                  Nous intervenons sur tous les postes clés de votre habitat pour une efficacité maximale.
+              </div>
+              <div className="max-w-xl lg:justify-self-end">
+                <p className="text-[15px] leading-8 text-ink/55">
+                  Isolation, rénovation globale et aides financières : GSE Isolation structure chaque projet avec une
+                  lecture technique claire, des matériaux adaptés et un accompagnement de bout en bout.
                 </p>
-                <a href="/solutions/" className="bg-green hover:bg-green-dark transition-colors text-white text-[13px] font-semibold uppercase tracking-[0.08em] px-7 py-4 rounded-full inline-flex items-center gap-2 w-fit">
-                  Découvrir nos solutions <span>→</span>
-                </a>
               </div>
             </div>
           </Reveal>
 
-          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
-            {servicesIso.map((s, i) => (
-              <Reveal key={s.slug} delay={i * 0.08}>
-                <a href={`/isolation-thermique/${s.slug}/`} className="group block">
-                  <div className="relative aspect-[4/5] rounded-xl overflow-hidden mb-4" style={{ background: SOLUTION_BG[i % SOLUTION_BG.length] }}>
-                    <div className="absolute bottom-3 left-3 w-10 h-10 bg-white rounded-lg flex items-center justify-center shadow-sm">
-                      {SOLUTION_ICONS[i % SOLUTION_ICONS.length]}
+          <div className="grid gap-6 md:grid-cols-2 xl:grid-cols-3">
+            {SOLUTION_CARDS.map((solution, i) => (
+              <Reveal key={solution.title} delay={i * 0.06}>
+                <a
+                  href={solution.href}
+                  className="group block h-full overflow-hidden rounded-2xl border border-ink/10 bg-white shadow-[0_18px_60px_rgba(18,18,18,0.06)] transition-all duration-500 hover:-translate-y-1.5 hover:border-green/25 hover:shadow-[0_28px_80px_rgba(18,18,18,0.12)]"
+                >
+                  <div className="relative aspect-[16/10] overflow-hidden bg-paper">
+                    <div
+                      className="absolute inset-0 transition-transform duration-700 group-hover:scale-[1.055]"
+                      style={{ background: solution.visual }}
+                    />
+                    <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(255,255,255,0.04)_0%,rgba(18,18,18,0.24)_100%)]" />
+                    <div className="absolute left-5 top-5 flex h-12 w-12 items-center justify-center rounded-xl border border-white/40 bg-white/85 text-green shadow-[0_16px_40px_rgba(18,18,18,0.12)] backdrop-blur-md">
+                      {solution.icon}
                     </div>
+                    <div className="absolute bottom-5 left-5 right-5 h-px bg-white/35" />
                   </div>
-                  <h3 className="font-bold text-[15px] mb-1 group-hover:text-green transition-colors">{s.titre}</h3>
-                  <p className="text-[13px] text-ink/50">{s.economie}</p>
+
+                  <div className="p-6 md:p-7">
+                    <h3 className="text-xl font-extrabold tracking-tight text-ink transition-colors duration-300 group-hover:text-green">
+                      {solution.title}
+                    </h3>
+                    <p className="mt-4 min-h-[56px] text-[14px] leading-7 text-ink/55">
+                      {solution.description}
+                    </p>
+                    <span className="mt-7 inline-flex items-center gap-3 text-[12px] font-bold uppercase tracking-[0.12em] text-ink transition-colors duration-300 group-hover:text-green">
+                      Découvrir
+                      <span className="flex h-8 w-8 items-center justify-center rounded-full border border-ink/10 transition-all duration-300 group-hover:translate-x-1 group-hover:border-green/30 group-hover:bg-green group-hover:text-white">
+                        →
+                      </span>
+                    </span>
+                  </div>
                 </a>
               </Reveal>
             ))}
@@ -151,8 +172,50 @@ export default function Home() {
   )
 }
 
-const SOLUTION_BG = ['#3a3530', '#8a8580', '#404a55', '#55514c']
-const SOLUTION_ICONS = [<IconHouse key="1" />, <IconLeaf key="2" />, <IconWindow key="3" />, <IconFan key="4" />]
+const SOLUTION_CARDS = [
+  {
+    title: 'Isolation des combles',
+    description: 'Le premier levier pour limiter les pertes de chaleur. Une intervention rapide, rentable et très lisible sur vos factures.',
+    href: '/isolation-thermique/isolation-des-combles/',
+    visual: 'linear-gradient(135deg,#2f332f 0%,#d6c59c 46%,#f4efe3 100%)',
+    icon: <IconHouse key="combles" />,
+  },
+  {
+    title: 'Isolation des murs',
+    description: 'Une enveloppe intérieure mieux maîtrisée pour gagner en confort. Idéal lorsque la façade ne peut pas être traitée.',
+    href: '/isolation-thermique/isolation-des-murs-par-linterieur/',
+    visual: 'linear-gradient(135deg,#24282b 0%,#8b928b 48%,#e7e4dc 100%)',
+    icon: <IconWindow key="murs" />,
+  },
+  {
+    title: 'Isolation des planchers',
+    description: 'Une réponse concrète aux sols froids et aux pertes par le bas. Le confort se ressent dès les premières pièces.',
+    href: '/isolation-thermique/isolation-des-planchers-bas/',
+    visual: 'linear-gradient(135deg,#30353a 0%,#a69374 52%,#efe9de 100%)',
+    icon: <IconCheck key="planchers" />,
+  },
+  {
+    title: 'Isolation extérieure',
+    description: 'La solution hautes performances pour traiter les ponts thermiques. Votre façade gagne en efficacité et en valeur.',
+    href: '/isolation-thermique/isolation-des-murs-par-lexterieur/',
+    visual: 'linear-gradient(135deg,#19201d 0%,#3FA66B 43%,#d8e6d4 100%)',
+    icon: <IconLeaf key="exterieure" />,
+  },
+  {
+    title: 'Rénovation énergétique',
+    description: 'Une vision globale du logement pour coordonner les bons travaux. Audit, priorités, chantier et performance finale.',
+    href: '/renovation-energetique/',
+    visual: 'linear-gradient(135deg,#1f2424 0%,#6e7b76 46%,#f1eadf 100%)',
+    icon: <IconFan key="renovation" />,
+  },
+  {
+    title: 'Aides financières',
+    description: "Un accompagnement clair pour mobiliser les dispositifs disponibles. Vous avancez avec un budget cadré dès le départ.",
+    href: '/aides-renovation-energetique/',
+    visual: 'linear-gradient(135deg,#25211d 0%,#b7a16f 48%,#f3efe5 100%)',
+    icon: <IconPercent key="aides" />,
+  },
+]
 
 function StatBlock({ value, label }: { value: string; label: string }) {
   return (
