@@ -13,7 +13,7 @@ export default function HomeHero() {
         aria-hidden="true"
         className="pointer-events-none absolute inset-0 z-0 scale-[1.04] bg-cover bg-no-repeat animate-[heroZoom_28s_ease-in-out_infinite_alternate]"
         style={{
-          backgroundImage: "url('/hero-chantier.webp'), url('https://raw.githubusercontent.com/localimpact06/Gse-isolation-V2/main/public/hero-chantier.webp')",
+          backgroundImage: "url('/hero-chantier.jpg'), url('/hero-chantier.webp'), url('https://raw.githubusercontent.com/localimpact06/Gse-isolation-V2/main/public/hero-chantier.jpg')",
           backgroundPosition: '58% center',
           filter: 'brightness(1.45) saturate(1.12) contrast(1.03)',
         }}
