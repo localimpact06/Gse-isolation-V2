@@ -90,18 +90,23 @@ export default function Home() {
               <Reveal key={solution.title} delay={i * 0.06}>
                 <a
                   href={solution.href}
-                  className="group block h-full overflow-hidden rounded-2xl border border-ink/10 bg-white shadow-[0_18px_60px_rgba(18,18,18,0.06)] transition-all duration-500 hover:-translate-y-1.5 hover:border-green/25 hover:shadow-[0_28px_80px_rgba(18,18,18,0.12)]"
+                  className="group block h-full overflow-hidden rounded-2xl border border-ink/10 bg-white shadow-[0_18px_60px_rgba(18,18,18,0.06)] transition-all duration-500 hover:-translate-y-2 hover:border-green/25 hover:shadow-[0_30px_90px_rgba(18,18,18,0.14)]"
                 >
-                  <div className="relative aspect-[16/10] overflow-hidden bg-paper">
+                  <div className="relative aspect-[16/10] overflow-hidden bg-ink">
                     <div
-                      className="absolute inset-0 transition-transform duration-700 group-hover:scale-[1.055]"
-                      style={{ background: solution.visual }}
+                      className="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-[1.06]"
+                      style={{ backgroundImage: `url('${solution.image}')` }}
                     />
-                    <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(255,255,255,0.04)_0%,rgba(18,18,18,0.24)_100%)]" />
+                    <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(18,18,18,0.10)_0%,rgba(18,18,18,0.34)_55%,rgba(18,18,18,0.70)_100%)]" />
                     <div className="absolute left-5 top-5 flex h-12 w-12 items-center justify-center rounded-xl border border-white/40 bg-white/85 text-green shadow-[0_16px_40px_rgba(18,18,18,0.12)] backdrop-blur-md">
                       {solution.icon}
                     </div>
-                    <div className="absolute bottom-5 left-5 right-5 h-px bg-white/35" />
+                    <span className="absolute right-5 top-5 rounded-full bg-green px-4 py-2 text-[11px] font-bold uppercase tracking-[0.12em] text-white shadow-[0_16px_36px_rgba(63,166,107,0.28)]">
+                      {solution.price}
+                    </span>
+                    <div className="absolute bottom-5 left-5 right-5">
+                      <div className="h-px bg-white/35" />
+                    </div>
                   </div>
 
                   <div className="p-6 md:p-7">
@@ -111,7 +116,17 @@ export default function Home() {
                     <p className="mt-4 min-h-[56px] text-[14px] leading-7 text-ink/55">
                       {solution.description}
                     </p>
-                    <span className="mt-7 inline-flex items-center gap-3 text-[12px] font-bold uppercase tracking-[0.12em] text-ink transition-colors duration-300 group-hover:text-green">
+
+                    <ul className="mt-6 space-y-3">
+                      {solution.benefits.map((benefit) => (
+                        <li key={benefit} className="flex items-center gap-3 text-[13px] font-medium text-ink/65">
+                          <span className="h-1.5 w-1.5 rounded-full bg-green" />
+                          {benefit}
+                        </li>
+                      ))}
+                    </ul>
+
+                    <span className="mt-7 inline-flex translate-y-0 items-center gap-3 text-[12px] font-bold uppercase tracking-[0.12em] text-ink opacity-100 transition-all duration-300 group-hover:text-green md:translate-y-2 md:opacity-0 md:group-hover:translate-y-0 md:group-hover:opacity-100">
                       Découvrir
                       <span className="flex h-8 w-8 items-center justify-center rounded-full border border-ink/10 transition-all duration-300 group-hover:translate-x-1 group-hover:border-green/30 group-hover:bg-green group-hover:text-white">
                         →
@@ -177,42 +192,54 @@ const SOLUTION_CARDS = [
     title: 'Isolation des combles',
     description: 'Le premier levier pour limiter les pertes de chaleur. Une intervention rapide, rentable et très lisible sur vos factures.',
     href: '/isolation-thermique/isolation-des-combles/',
-    visual: 'linear-gradient(135deg,#2f332f 0%,#d6c59c 46%,#f4efe3 100%)',
+    price: 'Dès 23€/m²',
+    image: 'https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&w=1200&q=80',
+    benefits: ['Jusqu’à 30% de pertes traitées', 'Chantier rapide', 'Confort été / hiver'],
     icon: <IconHouse key="combles" />,
   },
   {
     title: 'Isolation des murs',
     description: 'Une enveloppe intérieure mieux maîtrisée pour gagner en confort. Idéal lorsque la façade ne peut pas être traitée.',
     href: '/isolation-thermique/isolation-des-murs-par-linterieur/',
-    visual: 'linear-gradient(135deg,#24282b 0%,#8b928b 48%,#e7e4dc 100%)',
+    price: 'Sur devis',
+    image: 'https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?auto=format&fit=crop&w=1200&q=80',
+    benefits: ['Confort thermique', 'Travaux par pièces', 'Façade préservée'],
     icon: <IconWindow key="murs" />,
   },
   {
     title: 'Isolation des planchers',
     description: 'Une réponse concrète aux sols froids et aux pertes par le bas. Le confort se ressent dès les premières pièces.',
     href: '/isolation-thermique/isolation-des-planchers-bas/',
-    visual: 'linear-gradient(135deg,#30353a 0%,#a69374 52%,#efe9de 100%)',
+    price: 'Dès 30€/m²',
+    image: 'https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=1200&q=80',
+    benefits: ['Sols moins froids', 'Pose sous dalle', 'Gain de confort immédiat'],
     icon: <IconCheck key="planchers" />,
   },
   {
     title: 'Isolation extérieure',
     description: 'La solution hautes performances pour traiter les ponts thermiques. Votre façade gagne en efficacité et en valeur.',
     href: '/isolation-thermique/isolation-des-murs-par-lexterieur/',
-    visual: 'linear-gradient(135deg,#19201d 0%,#3FA66B 43%,#d8e6d4 100%)',
+    price: 'Dès 120€/m²',
+    image: 'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1200&q=80',
+    benefits: ['Ponts thermiques traités', 'Façade valorisée', 'Surface habitable conservée'],
     icon: <IconLeaf key="exterieure" />,
   },
   {
     title: 'Rénovation énergétique',
     description: 'Une vision globale du logement pour coordonner les bons travaux. Audit, priorités, chantier et performance finale.',
     href: '/renovation-energetique/',
-    visual: 'linear-gradient(135deg,#1f2424 0%,#6e7b76 46%,#f1eadf 100%)',
+    price: 'Projet global',
+    image: 'https://images.unsplash.com/photo-1600607687644-c7171b42498f?auto=format&fit=crop&w=1200&q=80',
+    benefits: ['Audit structuré', 'Travaux priorisés', 'Performance mesurable'],
     icon: <IconFan key="renovation" />,
   },
   {
     title: 'Aides financières',
     description: "Un accompagnement clair pour mobiliser les dispositifs disponibles. Vous avancez avec un budget cadré dès le départ.",
     href: '/aides-renovation-energetique/',
-    visual: 'linear-gradient(135deg,#25211d 0%,#b7a16f 48%,#f3efe5 100%)',
+    price: 'Jusqu’à 80 000€',
+    image: 'https://images.unsplash.com/photo-1554224155-6726b3ff858f?auto=format&fit=crop&w=1200&q=80',
+    benefits: ['MaPrimeRénov’', 'CEE & TVA réduite', 'Budget cadré'],
     icon: <IconPercent key="aides" />,
   },
 ]
