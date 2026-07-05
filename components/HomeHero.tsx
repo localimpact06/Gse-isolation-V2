@@ -13,7 +13,7 @@ export default function HomeHero() {
         aria-hidden="true"
         className="pointer-events-none absolute inset-0 z-0 scale-[1.04] bg-cover bg-no-repeat animate-[heroZoom_28s_ease-in-out_infinite_alternate]"
         style={{
-          backgroundImage: "url('/hero-chantier.jpg')",
+          backgroundImage: "url('/hero-chantier.webp')",
           backgroundPosition: '58% center',
           filter: 'brightness(1.45) saturate(1.12) contrast(1.03)',
         }}
