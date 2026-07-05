@@ -66,20 +66,20 @@ export default function Home() {
       </section>
 
       {/* SOLUTIONS */}
-      <section className="bg-white px-6 py-28 md:px-10 lg:py-36">
+      <section className="bg-white px-6 py-32 md:px-10 lg:py-44">
         <div className="max-w-7xl mx-auto">
           <Reveal>
-            <div className="mb-16 grid gap-10 lg:grid-cols-[0.9fr_1.1fr] lg:items-end">
+            <div className="mb-16 grid gap-10 lg:mb-20 lg:grid-cols-[0.9fr_1.1fr] lg:items-end">
               <div className="max-w-2xl">
                 <span className="text-green text-[12px] uppercase tracking-[0.2em]">Nos solutions</span>
-                <h2 className="mt-5 text-4xl font-extrabold tracking-tightest text-ink md:text-5xl">
-                  Des prestations pensées pour améliorer durablement votre habitat.
+                <h2 className="mt-5 text-4xl font-extrabold tracking-tightest text-ink md:text-5xl lg:text-6xl">
+                  Une isolation pensée comme un investissement durable.
                 </h2>
               </div>
               <div className="max-w-xl lg:justify-self-end">
                 <p className="text-[15px] leading-8 text-ink/55">
-                  Isolation, rénovation globale et aides financières : GSE Isolation structure chaque projet avec une
-                  lecture technique claire, des matériaux adaptés et un accompagnement de bout en bout.
+                  GSE Isolation sélectionne les bonnes solutions selon votre logement, vos contraintes et votre budget.
+                  Chaque prestation est cadrée pour améliorer le confort, réduire les pertes et valoriser votre bien.
                 </p>
               </div>
             </div>
@@ -90,22 +90,20 @@ export default function Home() {
               <Reveal key={solution.title} delay={i * 0.06}>
                 <a
                   href={solution.href}
-                  className="group block h-full overflow-hidden rounded-2xl border border-ink/10 bg-white shadow-[0_18px_60px_rgba(18,18,18,0.06)] transition-all duration-500 hover:-translate-y-2 hover:border-green/25 hover:shadow-[0_30px_90px_rgba(18,18,18,0.14)]"
+                  className="group block h-full overflow-hidden rounded-2xl border border-ink/10 bg-white shadow-[0_18px_60px_rgba(18,18,18,0.06)] transition-all duration-500 hover:-translate-y-2 hover:border-green/25 hover:shadow-[0_34px_90px_rgba(18,18,18,0.15)]"
+                  aria-label={`Découvrir ${solution.title}`}
                 >
                   <div className="relative aspect-[16/10] overflow-hidden bg-ink">
                     <div
                       className="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-[1.06]"
                       style={{ backgroundImage: `url('${solution.image}')` }}
                     />
-                    <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(18,18,18,0.10)_0%,rgba(18,18,18,0.34)_55%,rgba(18,18,18,0.70)_100%)]" />
-                    <div className="absolute left-5 top-5 flex h-12 w-12 items-center justify-center rounded-xl border border-white/40 bg-white/85 text-green shadow-[0_16px_40px_rgba(18,18,18,0.12)] backdrop-blur-md">
-                      {solution.icon}
-                    </div>
-                    <span className="absolute right-5 top-5 rounded-full bg-green px-4 py-2 text-[11px] font-bold uppercase tracking-[0.12em] text-white shadow-[0_16px_36px_rgba(63,166,107,0.28)]">
-                      {solution.price}
+                    <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(18,18,18,0.08)_0%,rgba(18,18,18,0.28)_48%,rgba(18,18,18,0.76)_100%)]" />
+                    <span className="absolute left-5 top-5 rounded-full border border-white/20 bg-white/90 px-4 py-2 text-[10px] font-bold uppercase tracking-[0.14em] text-ink shadow-[0_16px_36px_rgba(18,18,18,0.16)] backdrop-blur-md">
+                      {solution.badge}
                     </span>
                     <div className="absolute bottom-5 left-5 right-5">
-                      <div className="h-px bg-white/35" />
+                      <div className="h-px bg-white/30" />
                     </div>
                   </div>
 
@@ -120,15 +118,17 @@ export default function Home() {
                     <ul className="mt-6 space-y-3">
                       {solution.benefits.map((benefit) => (
                         <li key={benefit} className="flex items-center gap-3 text-[13px] font-medium text-ink/65">
-                          <span className="h-1.5 w-1.5 rounded-full bg-green" />
+                          <span className="flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-green/10 text-[12px] font-bold text-green">
+                            ✓
+                          </span>
                           {benefit}
                         </li>
                       ))}
                     </ul>
 
-                    <span className="mt-7 inline-flex translate-y-0 items-center gap-3 text-[12px] font-bold uppercase tracking-[0.12em] text-ink opacity-100 transition-all duration-300 group-hover:text-green md:translate-y-2 md:opacity-0 md:group-hover:translate-y-0 md:group-hover:opacity-100">
+                    <span className="mt-7 inline-flex translate-y-0 items-center gap-3 rounded-full border border-ink/10 px-5 py-3 text-[12px] font-bold uppercase tracking-[0.12em] text-ink opacity-100 transition-all duration-300 group-hover:border-green/30 group-hover:bg-green group-hover:text-white md:translate-y-3 md:opacity-0 md:group-hover:translate-y-0 md:group-hover:opacity-100">
                       Découvrir
-                      <span className="flex h-8 w-8 items-center justify-center rounded-full border border-ink/10 transition-all duration-300 group-hover:translate-x-1 group-hover:border-green/30 group-hover:bg-green group-hover:text-white">
+                      <span className="transition-transform duration-300 group-hover:translate-x-1">
                         →
                       </span>
                     </span>
@@ -192,55 +192,49 @@ const SOLUTION_CARDS = [
     title: 'Isolation des combles',
     description: 'Le premier levier pour limiter les pertes de chaleur. Une intervention rapide, rentable et très lisible sur vos factures.',
     href: '/isolation-thermique/isolation-des-combles/',
-    price: 'Dès 23€/m²',
-    image: 'https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&w=1200&q=80',
-    benefits: ['Jusqu’à 30% de pertes traitées', 'Chantier rapide', 'Confort été / hiver'],
-    icon: <IconHouse key="combles" />,
+    badge: 'Éligible aux aides',
+    image: 'https://images.unsplash.com/photo-1517581177682-a085bb7ffb15?auto=format&fit=crop&w=1200&q=82',
+    benefits: ['Réduit les pertes par toiture', 'Chantier rapide et maîtrisé', 'Confort été comme hiver'],
   },
   {
     title: 'Isolation des murs',
     description: 'Une enveloppe intérieure mieux maîtrisée pour gagner en confort. Idéal lorsque la façade ne peut pas être traitée.',
     href: '/isolation-thermique/isolation-des-murs-par-linterieur/',
-    price: 'Sur devis',
-    image: 'https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?auto=format&fit=crop&w=1200&q=80',
-    benefits: ['Confort thermique', 'Travaux par pièces', 'Façade préservée'],
-    icon: <IconWindow key="murs" />,
+    badge: 'Sur devis',
+    image: 'https://images.unsplash.com/photo-1600585154526-990dced4db0d?auto=format&fit=crop&w=1200&q=82',
+    benefits: ['Améliore le confort thermique', 'Travaux adaptés pièce par pièce', 'Préserve l’aspect extérieur'],
   },
   {
     title: 'Isolation des planchers',
     description: 'Une réponse concrète aux sols froids et aux pertes par le bas. Le confort se ressent dès les premières pièces.',
     href: '/isolation-thermique/isolation-des-planchers-bas/',
-    price: 'Dès 30€/m²',
-    image: 'https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=1200&q=80',
-    benefits: ['Sols moins froids', 'Pose sous dalle', 'Gain de confort immédiat'],
-    icon: <IconCheck key="planchers" />,
+    badge: 'Intervention 06-83',
+    image: 'https://images.unsplash.com/photo-1600566752355-35792bedcfea?auto=format&fit=crop&w=1200&q=82',
+    benefits: ['Limite les sensations de sol froid', 'Pose possible par sous-face', 'Gain de confort immédiat'],
   },
   {
     title: 'Isolation extérieure',
     description: 'La solution hautes performances pour traiter les ponts thermiques. Votre façade gagne en efficacité et en valeur.',
     href: '/isolation-thermique/isolation-des-murs-par-lexterieur/',
-    price: 'Dès 120€/m²',
-    image: 'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1200&q=80',
-    benefits: ['Ponts thermiques traités', 'Façade valorisée', 'Surface habitable conservée'],
-    icon: <IconLeaf key="exterieure" />,
+    badge: 'Éligible aux aides',
+    image: 'https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?auto=format&fit=crop&w=1200&q=82',
+    benefits: ['Traite les ponts thermiques', 'Valorise durablement la façade', 'Conserve la surface habitable'],
   },
   {
     title: 'Rénovation énergétique',
     description: 'Une vision globale du logement pour coordonner les bons travaux. Audit, priorités, chantier et performance finale.',
     href: '/renovation-energetique/',
-    price: 'Projet global',
-    image: 'https://images.unsplash.com/photo-1600607687644-c7171b42498f?auto=format&fit=crop&w=1200&q=80',
-    benefits: ['Audit structuré', 'Travaux priorisés', 'Performance mesurable'],
-    icon: <IconFan key="renovation" />,
+    badge: 'Sur devis',
+    image: 'https://images.unsplash.com/photo-1600566753376-12c8ab7fb75b?auto=format&fit=crop&w=1200&q=82',
+    benefits: ['Audit et priorités claires', 'Travaux coordonnés', 'Performance finale mesurable'],
   },
   {
     title: 'Aides financières',
     description: "Un accompagnement clair pour mobiliser les dispositifs disponibles. Vous avancez avec un budget cadré dès le départ.",
     href: '/aides-renovation-energetique/',
-    price: 'Jusqu’à 80 000€',
-    image: 'https://images.unsplash.com/photo-1554224155-6726b3ff858f?auto=format&fit=crop&w=1200&q=80',
-    benefits: ['MaPrimeRénov’', 'CEE & TVA réduite', 'Budget cadré'],
-    icon: <IconPercent key="aides" />,
+    badge: 'Éligible aux aides',
+    image: 'https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?auto=format&fit=crop&w=1200&q=82',
+    benefits: ['MaPrimeRénov’ étudiée', 'CEE et TVA réduite', 'Budget cadré avant chantier'],
   },
 ]
 
@@ -295,10 +289,4 @@ function IconCheck({ light = false }: { light?: boolean }) {
 function IconUsers({ light = false }: { light?: boolean }) {
   const c = light ? '#fff' : '#3FA66B'
   return <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke={c} strokeWidth="1.4"><circle cx="9" cy="8" r="3" /><path d="M3 20c0-3.5 2.7-6 6-6s6 2.5 6 6" /><circle cx="17" cy="9" r="2.3" /><path d="M21 20c0-2.6-1.7-4.7-4-5.4" /></svg>
-}
-function IconWindow() {
-  return <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#3FA66B" strokeWidth="1.4"><rect x="4" y="4" width="16" height="16" rx="1" /><line x1="12" y1="4" x2="12" y2="20" /><line x1="4" y1="12" x2="20" y2="12" /></svg>
-}
-function IconFan() {
-  return <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#3FA66B" strokeWidth="1.4"><circle cx="12" cy="12" r="2" /><path d="M12 10c0-3 1-6 4-6s2 4-1 6" /><path d="M14 12c3 0 6 1 6 4s-4 2-6-1" /><path d="M12 14c0 3-1 6-4 6s-2-4 1-6" /></svg>
 }
