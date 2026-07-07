@@ -95,7 +95,7 @@ export default function Home() {
                 >
                   <div className="relative aspect-[16/10] overflow-hidden bg-ink">
                     <div
-                      className="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-[1.06]"
+                      className={`absolute inset-0 bg-cover transition-transform duration-700 group-hover:scale-[1.06] ${solution.position}`}
                       style={{ backgroundImage: `url('${solution.image}')` }}
                     />
                     <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(18,18,18,0.08)_0%,rgba(18,18,18,0.28)_48%,rgba(18,18,18,0.76)_100%)]" />
@@ -194,6 +194,7 @@ const SOLUTION_CARDS = [
     href: '/isolation-thermique/isolation-des-combles/',
     badge: 'Éligible aux aides',
     image: 'https://images.unsplash.com/photo-1517581177682-a085bb7ffb15?auto=format&fit=crop&w=1200&q=82',
+    position: 'bg-center',
     benefits: ['Réduit les pertes par toiture', 'Chantier rapide et maîtrisé', 'Confort été comme hiver'],
   },
   {
@@ -201,7 +202,8 @@ const SOLUTION_CARDS = [
     description: 'Une enveloppe intérieure mieux maîtrisée pour gagner en confort. Idéal lorsque la façade ne peut pas être traitée.',
     href: '/isolation-thermique/isolation-des-murs-par-linterieur/',
     badge: 'Sur devis',
-    image: 'https://images.unsplash.com/photo-1600585154526-990dced4db0d?auto=format&fit=crop&w=1200&q=82',
+    image: '/solutions/isolation-murs-card.jpg',
+    position: 'bg-[position:38%_50%]',
     benefits: ['Améliore le confort thermique', 'Travaux adaptés pièce par pièce', 'Préserve l’aspect extérieur'],
   },
   {
@@ -210,6 +212,7 @@ const SOLUTION_CARDS = [
     href: '/isolation-thermique/isolation-des-planchers-bas/',
     badge: 'Intervention 06-83',
     image: 'https://images.unsplash.com/photo-1600566752355-35792bedcfea?auto=format&fit=crop&w=1200&q=82',
+    position: 'bg-center',
     benefits: ['Limite les sensations de sol froid', 'Pose possible par sous-face', 'Gain de confort immédiat'],
   },
   {
@@ -217,7 +220,8 @@ const SOLUTION_CARDS = [
     description: 'La solution hautes performances pour traiter les ponts thermiques. Votre façade gagne en efficacité et en valeur.',
     href: '/isolation-thermique/isolation-des-murs-par-lexterieur/',
     badge: 'Éligible aux aides',
-    image: 'https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?auto=format&fit=crop&w=1200&q=82',
+    image: '/solutions/isolation-exterieure-card.jpg',
+    position: 'bg-[position:42%_50%]',
     benefits: ['Traite les ponts thermiques', 'Valorise durablement la façade', 'Conserve la surface habitable'],
   },
   {
@@ -226,6 +230,7 @@ const SOLUTION_CARDS = [
     href: '/renovation-energetique/',
     badge: 'Sur devis',
     image: 'https://images.unsplash.com/photo-1600566753376-12c8ab7fb75b?auto=format&fit=crop&w=1200&q=82',
+    position: 'bg-center',
     benefits: ['Audit et priorités claires', 'Travaux coordonnés', 'Performance finale mesurable'],
   },
   {
@@ -234,6 +239,7 @@ const SOLUTION_CARDS = [
     href: '/aides-renovation-energetique/',
     badge: 'Éligible aux aides',
     image: 'https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?auto=format&fit=crop&w=1200&q=82',
+    position: 'bg-center',
     benefits: ['MaPrimeRénov’ étudiée', 'CEE et TVA réduite', 'Budget cadré avant chantier'],
   },
 ]
