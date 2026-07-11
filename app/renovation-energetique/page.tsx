@@ -8,7 +8,7 @@ import ContentSection from '@/components/ContentSection'
 
 export const metadata: Metadata = {
   title: "Rénovation Énergétique — Isolation, PAC, Audit",
-  description: "Rénovation énergétique globale en Alpes-Maritimes et Var : isolation, audit, accompagnement aides. Aides jusqu'à 80 000€. Devis gratuit.",
+  description: "Rénovation énergétique globale en Alpes-Maritimes et Var : isolation, audit et accompagnement aux aides selon votre éligibilité. Devis gratuit.",
   alternates: { canonical: '/renovation-energetique/' },
 }
 
@@ -17,7 +17,7 @@ export default function RenovationHub() {
     <>
       <Header />
       <Breadcrumb items={[{ label: 'Accueil', href: '/' }, { label: 'Rénovation énergétique' }]} />
-      <PageHero eyebrow="Rénovation globale" title="Rénovation énergétique globale" subtitle="Isolation et audit énergétique — un projet clé en main avec aides jusqu'à 80 000€" />
+      <PageHero eyebrow="Rénovation globale" title="Rénovation énergétique globale" subtitle="Isolation et audit énergétique — un projet cadré avec étude des aides disponibles" />
 
       <ContentSection>
         <h2>Qu'est-ce qu'une rénovation énergétique globale ?</h2>
