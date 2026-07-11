@@ -10,7 +10,7 @@ export const metadata: Metadata = {
     default: "GSE Isolation — Rénovation énergétique en Alpes-Maritimes",
     template: "%s | GSE Isolation",
   },
-  description: "GSE Isolation : rénovation énergétique complète (isolation, audit, rénovation globale). Aides jusqu'à 80 000€. +100 chantiers réalisés. Devis gratuit.",
+  description: "GSE Isolation : rénovation énergétique complète en Alpes-Maritimes et Var. Isolation, audit, rénovation globale, aides étudiées et devis gratuit.",
   alternates: { canonical: '/' },
   openGraph: {
     type: 'website',
@@ -37,7 +37,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
               "@context": "https://schema.org",
               "@type": "LocalBusiness",
               "name": "GSE Isolation",
-              "description": "Rénovation énergétique clé en main avec gestion complète des aides de l'État",
+              "description": "Rénovation énergétique, isolation thermique, audit et accompagnement aux aides financières",
               "address": {
                 "@type": "PostalAddress",
                 "streetAddress": "15 Rue des Bauques",
