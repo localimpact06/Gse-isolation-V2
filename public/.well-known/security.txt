@@ -1,0 +1,3 @@
+Contact: mailto:sf.gse.ecologie@gmail.com
+Preferred-Languages: fr
+Canonical: https://gse-isolation.fr/.well-known/security.txt
