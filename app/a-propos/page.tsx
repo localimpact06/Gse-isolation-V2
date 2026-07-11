@@ -8,7 +8,7 @@ import Reveal from '@/components/Reveal'
 
 export const metadata: Metadata = {
   title: "À Propos — GSE Isolation",
-  description: "GSE Isolation, entreprise certifiée Qualibat RGE spécialisée en rénovation énergétique à Saint-Paul-de-Vence, Alpes-Maritimes.",
+  description: "GSE Isolation, entreprise spécialisée en rénovation énergétique à Saint-Paul-de-Vence, Alpes-Maritimes.",
   alternates: { canonical: '/a-propos/' },
 }
 
@@ -29,9 +29,9 @@ export default function AProposPage() {
           GSE Isolation est une entreprise spécialisée dans les travaux d'isolation thermique et la réalisation d'audits énergétiques, basée à Saint-Paul-de-Vence dans les Alpes-Maritimes. Nous intervenons sur l'ensemble de la côte, de Nice à Fréjus, pour accompagner les propriétaires dans l'amélioration de la performance énergétique de leur habitat.
         </p>
 
-        <h2>Nos certifications</h2>
+        <h2>Garanties et qualifications</h2>
         <p>
-          Notre équipe est certifiée <strong>Qualibat RGE</strong> (Reconnu Garant de l'Environnement), une qualification indispensable pour que nos clients puissent bénéficier des aides de l'État. Nous sommes également couverts par une <strong>garantie décennale SMA BTP</strong> de 10 ans sur l'ensemble de nos chantiers.
+          Les qualifications, assurances et garanties applicables sont vérifiées selon la nature du chantier et précisées sur les devis, attestations et documents contractuels remis au client.
         </p>
 
         <h2>Notre approche</h2>
@@ -41,15 +41,15 @@ export default function AProposPage() {
 
         <h2>Notre engagement</h2>
         <p>
-          Au-delà des travaux eux-mêmes, GSE Isolation gère l'intégralité des démarches administratives liées aux aides de l'État (MaPrimeRénov', CEE, Éco-PTZ), afin que nos clients n'aient aucune formalité à gérer seuls. Notre équipe reste disponible 6 jours sur 7 pour répondre à toute question avant, pendant et après le chantier.
+          Au-delà des travaux eux-mêmes, GSE Isolation accompagne les démarches administratives liées aux aides de l'État (MaPrimeRénov', CEE, Éco-PTZ), afin de cadrer le projet avant le lancement du chantier.
         </p>
       </ContentSection>
 
       <section className="bg-ink py-16 px-6 md:px-10">
         <div className="max-w-7xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
-          <Reveal><div><div className="text-3xl font-extrabold text-white">100+</div><div className="text-white/40 text-xs uppercase tracking-wide mt-2">chantiers réalisés</div></div></Reveal>
-          <Reveal delay={0.08}><div><div className="text-3xl font-extrabold text-white">Qualibat</div><div className="text-white/40 text-xs uppercase tracking-wide mt-2">certification RGE</div></div></Reveal>
-          <Reveal delay={0.16}><div><div className="text-3xl font-extrabold text-white">10 ans</div><div className="text-white/40 text-xs uppercase tracking-wide mt-2">garantie décennale</div></div></Reveal>
+          <Reveal><div><div className="text-3xl font-extrabold text-white">06 / 83</div><div className="text-white/40 text-xs uppercase tracking-wide mt-2">zone d’intervention</div></div></Reveal>
+          <Reveal delay={0.08}><div><div className="text-3xl font-extrabold text-white">Audit</div><div className="text-white/40 text-xs uppercase tracking-wide mt-2">lecture technique</div></div></Reveal>
+          <Reveal delay={0.16}><div><div className="text-3xl font-extrabold text-white">Aides</div><div className="text-white/40 text-xs uppercase tracking-wide mt-2">dossier étudié</div></div></Reveal>
           <Reveal delay={0.24}><div><div className="text-3xl font-extrabold text-white">20</div><div className="text-white/40 text-xs uppercase tracking-wide mt-2">villes desservies</div></div></Reveal>
         </div>
       </section>
