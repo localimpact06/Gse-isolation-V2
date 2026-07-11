@@ -10,12 +10,26 @@ export default function ContactForm() {
   const [email, setEmail] = useState('')
   const [cp, setCp] = useState('')
   const [service, setService] = useState('Rénovation globale')
+  const [consent, setConsent] = useState(false)
+  const [company, setCompany] = useState('')
+  const [formStartedAt] = useState(() => Date.now())
 
   function handleSubmit(e: React.FormEvent) {
     e.preventDefault()
+    const elapsedMs = Date.now() - formStartedAt
+    const cleanNom = nom.trim()
+    const cleanTel = tel.trim()
+    const cleanEmail = email.trim().toLowerCase()
+    const cleanCp = cp.trim()
+
+    if (elapsedMs < 2500) { setError('Merci de patienter quelques secondes avant d’envoyer votre demande.'); return }
     if (!nom.trim()) { setError('Merci de renseigner votre nom.'); return }
-    if (!tel.trim()) { setError('Merci de renseigner votre téléphone.'); return }
-    if (!email.includes('@')) { setError('Merci de renseigner un e-mail valide.'); return }
+    if (!/^[\p{L}\p{M}'’.\-\s]{2,80}$/u.test(cleanNom)) { setError('Merci de renseigner un nom valide.'); return }
+    if (!/^[0-9+().\s-]{8,24}$/.test(cleanTel)) { setError('Merci de renseigner un téléphone valide.'); return }
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(cleanEmail)) { setError('Merci de renseigner un e-mail valide.'); return }
+    if (cleanCp && !/^[0-9]{5}$/.test(cleanCp)) { setError('Merci de renseigner un code postal valide.'); return }
+    if (!consent) { setError('Merci d’accepter le traitement de vos données pour être recontacté.'); return }
+    if (company.trim()) { setError('Votre demande n’a pas pu être envoyée.'); return }
     setError('')
     setSent(true)
   }
@@ -47,23 +61,27 @@ export default function ContactForm() {
         >
           <div>
             <label className={labelClass}>Votre nom *</label>
-            <input className={inputClass} value={nom} onChange={e => setNom(e.target.value)} type="text" />
+            <input name="nom" className={inputClass} value={nom} onChange={e => setNom(e.target.value)} type="text" autoComplete="name" required minLength={2} maxLength={80} />
           </div>
           <div>
             <label className={labelClass}>Votre téléphone *</label>
-            <input className={inputClass} value={tel} onChange={e => setTel(e.target.value)} type="tel" />
+            <input name="telephone" className={inputClass} value={tel} onChange={e => setTel(e.target.value)} type="tel" autoComplete="tel" required minLength={8} maxLength={24} />
           </div>
           <div>
             <label className={labelClass}>Votre e-mail *</label>
-            <input className={inputClass} value={email} onChange={e => setEmail(e.target.value)} type="email" />
+            <input name="email" className={inputClass} value={email} onChange={e => setEmail(e.target.value)} type="email" autoComplete="email" required maxLength={120} />
           </div>
           <div>
             <label className={labelClass}>Code postal</label>
-            <input className={inputClass} value={cp} onChange={e => setCp(e.target.value)} type="text" />
+            <input name="code-postal" className={inputClass} value={cp} onChange={e => setCp(e.target.value)} type="text" inputMode="numeric" autoComplete="postal-code" pattern="[0-9]{5}" maxLength={5} />
+          </div>
+          <div className="hidden" aria-hidden="true">
+            <label>Entreprise</label>
+            <input name="entreprise" value={company} onChange={e => setCompany(e.target.value)} type="text" tabIndex={-1} autoComplete="off" />
           </div>
           <div>
             <label className={labelClass}>Service souhaité</label>
-            <select className={`${inputClass} appearance-none`} value={service} onChange={e => setService(e.target.value)}>
+            <select name="service" className={`${inputClass} appearance-none`} value={service} onChange={e => setService(e.target.value)}>
               <option className="text-ink">Rénovation globale</option>
               <option className="text-ink">Isolation des murs par l'extérieur</option>
               <option className="text-ink">Isolation des combles</option>
@@ -71,7 +89,20 @@ export default function ContactForm() {
               <option className="text-ink">Audit énergétique</option>
             </select>
           </div>
-          {error && <p className="text-red-400 text-sm">{error}</p>}
+          <label className="flex items-start gap-3 text-left text-xs leading-6 text-white/50">
+            <input
+              type="checkbox"
+              checked={consent}
+              onChange={e => setConsent(e.target.checked)}
+              className="mt-1 h-4 w-4 rounded border-white/20 accent-green"
+              required
+            />
+            <span>
+              J’accepte que GSE Isolation utilise ces informations pour me recontacter au sujet de ma demande de devis. Voir la{' '}
+              <a href="/confidentialite/" className="text-green underline">politique de confidentialité</a>.
+            </span>
+          </label>
+          {error && <p role="alert" className="text-red-400 text-sm">{error}</p>}
           <button
             type="submit"
             className="w-full bg-green hover:bg-green-dark transition-colors text-white text-[13px] font-semibold uppercase tracking-[0.12em] py-4 rounded-full mt-2"
