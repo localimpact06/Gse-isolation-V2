@@ -2,6 +2,8 @@ import type { Metadata } from 'next'
 import './globals.css'
 import CookieBanner from '@/components/CookieBanner'
 
+const gaId = process.env.NEXT_PUBLIC_GA_ID
+
 export const metadata: Metadata = {
   metadataBase: new URL('https://gse-isolation.fr'),
   title: {
@@ -51,23 +53,10 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             })
           }}
         />
-        {/* Google Analytics 4 - chargé après consentement cookies */}
-        <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX" />
-        <script
-          dangerouslySetInnerHTML={{
-            __html: `
-              window.dataLayer = window.dataLayer || [];
-              function gtag(){dataLayer.push(arguments);}
-              gtag('consent','default',{analytics_storage:'denied'});
-              gtag('js', new Date());
-              gtag('config', 'G-XXXXXXXXXX');
-            `
-          }}
-        />
       </head>
       <body className="font-sans antialiased">
         {children}
-        <CookieBanner />
+        <CookieBanner gaId={gaId} />
       </body>
     </html>
   )
