@@ -9,7 +9,7 @@ import { servicesIso } from '@/lib/services-iso'
 
 export const metadata: Metadata = {
   title: "Isolation Thermique — Murs, Combles, Planchers",
-  description: "Isolation thermique des murs (120€/m²), combles (23€/m²) et planchers bas (30€/m²). Aides jusqu'à 90%. Devis gratuit GSE Isolation.",
+  description: "Isolation thermique des murs, combles et planchers bas. Devis personnalisé et aides étudiées selon votre situation.",
   alternates: { canonical: '/isolation-thermique/' },
 }
 
@@ -18,7 +18,7 @@ export default function IsolationPage() {
     <>
       <Header />
       <Breadcrumb items={[{ label: 'Accueil', href: '/' }, { label: 'Isolation thermique' }]} />
-      <PageHero eyebrow="Nos solutions" title="Isolation thermique" subtitle="Murs, combles, planchers bas — jusqu'à 90% d'aides" />
+      <PageHero eyebrow="Nos solutions" title="Isolation thermique" subtitle="Murs, combles, planchers bas — aides étudiées selon votre projet" />
 
       <section className="py-20 px-6 md:px-10">
         <div className="max-w-7xl mx-auto">
@@ -43,7 +43,7 @@ export default function IsolationPage() {
 
       <ContentSection>
         <h2>Quelles aides disponibles ?</h2>
-        <p>MaPrimeRénov' jusqu'à 90%, CEE, TVA réduite à 5,5% et Éco-prêt à taux zéro. GSE gère l'ensemble des démarches pour vous, de la simulation à l'obtention des aides.</p>
+        <p>MaPrimeRénov', CEE, TVA réduite à 5,5% et Éco-prêt à taux zéro peuvent être étudiés selon votre situation. GSE vous accompagne de la simulation au suivi du dossier.</p>
       </ContentSection>
 
       <section className="bg-green py-16 px-6 md:px-10 text-center">
