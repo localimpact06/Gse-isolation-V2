@@ -7,7 +7,7 @@ import Testimonials from '@/components/Testimonials'
 
 export const metadata: Metadata = {
   title: "Rénovation Énergétique à Nice — GSE Isolation",
-  description: "GSE Isolation : rénovation énergétique premium à Nice et en Alpes-Maritimes. Isolation, audit, aides jusqu'à 80 000€. Devis gratuit.",
+  description: "GSE Isolation : rénovation énergétique premium à Nice et en Alpes-Maritimes. Isolation, audit, aides financières et devis gratuit.",
   alternates: { canonical: '/' },
 }
 
@@ -232,10 +232,10 @@ const PROOFS = [
 ]
 
 const PROJECT_STATS = [
-  { value: '-70%', label: 'de pertes ciblées' },
-  { value: '+4', label: 'classes DPE possibles' },
+  { value: 'Audit', label: 'lecture technique' },
+  { value: 'Aides', label: 'dossier cadré' },
   { value: '06 / 83', label: "zone d'intervention" },
-  { value: 'RGE', label: 'travaux éligibles' },
+  { value: 'Devis', label: 'proposition claire' },
 ]
 
 const SOLUTION_CARDS = [
@@ -245,8 +245,8 @@ const SOLUTION_CARDS = [
     href: '/isolation-thermique/isolation-des-combles/',
     badge: 'Éligible aux aides',
     visualLabel: 'Combles',
-    image: '/solutions/isolation-murs-card.jpg',
-    position: '42% 50%',
+    image: null,
+    position: '50% 50%',
     benefits: ['Pertes par toiture réduites', 'Chantier rapide', 'Confort été comme hiver'],
   },
   {
@@ -275,8 +275,8 @@ const SOLUTION_CARDS = [
     href: '/isolation-thermique/isolation-des-murs-par-lexterieur/',
     badge: 'Éligible aux aides',
     visualLabel: 'Extérieur',
-    image: '/solutions/isolation-exterieure-card.jpg',
-    position: '42% 50%',
+    image: '/solutions/chantier-isolation-exterieure.png',
+    position: '43% 50%',
     benefits: ['Ponts thermiques traités', 'Façade valorisée', 'Surface habitable conservée'],
   },
   {
@@ -285,8 +285,8 @@ const SOLUTION_CARDS = [
     href: '/renovation-energetique/',
     badge: 'Projet complet',
     visualLabel: 'Global',
-    image: '/hero-chantier.webp',
-    position: '58% 50%',
+    image: null,
+    position: '50% 50%',
     benefits: ['Audit et priorités', 'Travaux coordonnés', 'Performance mesurable'],
   },
   {
@@ -295,8 +295,8 @@ const SOLUTION_CARDS = [
     href: '/aides-renovation-energetique/',
     badge: 'Budget cadré',
     visualLabel: 'Aides',
-    image: '/solutions/isolation-exterieure-card.jpg',
-    position: '45% 50%',
+    image: null,
+    position: '50% 50%',
     benefits: ['MaPrimeRénov’ étudiée', 'CEE mobilisés', 'TVA réduite vérifiée'],
   },
 ]
@@ -361,13 +361,10 @@ function ProjectVisual({ label, tone }: { label: string; tone: 'before' | 'after
   return (
     <div className="group relative flex min-h-[320px] overflow-hidden p-6">
       <div className={`absolute inset-0 transition-transform duration-700 group-hover:scale-105 ${isAfter ? 'bg-[radial-gradient(circle_at_78%_20%,rgba(63,166,107,0.32),transparent_32%),linear-gradient(135deg,#EFF4EC_0%,#DDE7D8_44%,#B9CBB3_100%)]' : 'bg-[radial-gradient(circle_at_18%_18%,rgba(255,255,255,0.55),transparent_30%),linear-gradient(135deg,#D6D0C3_0%,#B9AE9A_46%,#756D5F_100%)]'}`} />
-      <div
-        className="absolute inset-0 bg-cover transition-transform duration-700 group-hover:scale-105"
-        style={{
-          backgroundImage: isAfter ? "url('/hero-chantier.webp')" : "url('/solutions/isolation-exterieure-card.jpg')",
-          backgroundPosition: isAfter ? '58% 50%' : '42% 50%',
-        }}
-      />
+      <div className="absolute inset-x-10 top-14 h-px bg-white/30" />
+      <div className="absolute bottom-20 left-10 h-28 w-px bg-white/25" />
+      <div className="absolute right-10 top-16 h-28 w-28 rounded-full border border-white/25" />
+      <div className="absolute bottom-10 right-16 h-16 w-40 rounded-full border border-white/15" />
       <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(30,30,30,0.04)_0%,rgba(30,30,30,0.38)_100%)]" />
       <div className="relative mt-auto w-full">
         <span className={`rounded-full px-4 py-2 text-[10px] font-bold uppercase tracking-[0.14em] ${isAfter ? 'bg-green text-white shadow-[0_14px_35px_rgba(63,166,107,0.22)]' : 'bg-white/90 text-[#1E1E1E] backdrop-blur-md'}`}>
