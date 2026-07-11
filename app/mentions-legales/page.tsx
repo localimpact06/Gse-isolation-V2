@@ -17,16 +17,26 @@ export default function MentionsLegales() {
       <PageHero eyebrow="Informations légales" title="Mentions légales" />
       <ContentSection>
         <h2>Éditeur du site</h2>
-        <p>GSE Isolation<br />15 Rue des Bauques, 06570 Saint-Paul-de-Vence<br />SIRET : 952 175 495<br />Téléphone : 04 22 13 86 11<br />E-mail : contact@gse-isolation.fr</p>
+        <p>
+          G.S.E ISOLATION<br />
+          Société par actions simplifiée unipersonnelle (SASU)<br />
+          RCS : 952 175 495<br />
+          15 rue des Bauques, 06570 Saint-Paul-de-Vence<br />
+          Téléphone : 06 18 35 82 23<br />
+          E-mail : sf.gse.ecologie@gmail.com
+        </p>
+
+        <h2>Directeur de publication</h2>
+        <p>Stéphane LESUEUR.</p>
 
         <h2>Certifications</h2>
-        <p>GSE Isolation est certifié Qualibat RGE (Reconnu Garant de l'Environnement) et bénéficie d'une garantie décennale SMA BTP de 10 ans sur l'ensemble de ses chantiers.</p>
+        <p>GSE Isolation intervient dans le cadre de travaux de rénovation énergétique et d’isolation. Les certifications, garanties et qualifications applicables sont précisées sur les devis et documents contractuels remis au client.</p>
 
         <h2>Hébergement</h2>
-        <p>Ce site est hébergé par un prestataire d'hébergement web professionnel. Les informations d'hébergement détaillées sont disponibles sur demande.</p>
+        <p>Ce site est hébergé sur la plateforme Vercel, opérée par Vercel Inc. Les informations techniques d’hébergement peuvent être complétées après validation du compte de production utilisé pour la mise en ligne.</p>
 
         <h2>Propriété intellectuelle</h2>
-        <p>L'ensemble du contenu de ce site (textes, images, logo) est la propriété de GSE Isolation, sauf mention contraire, et ne peut être reproduit sans autorisation préalable.</p>
+        <p>L’ensemble du contenu de ce site (textes, images, logo, structure et éléments graphiques) est protégé. Toute reproduction ou réutilisation sans autorisation préalable est interdite.</p>
       </ContentSection>
       <Footer />
     </>
