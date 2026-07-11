@@ -47,9 +47,19 @@ export default function ContactForm() {
           className="text-center max-w-md mx-auto"
         >
           <div className="text-5xl mb-4">✓</div>
-          <h3 className="text-2xl font-semibold text-green mb-3">Demande envoyée</h3>
-          <p className="text-white/60 mb-6">Un conseiller GSE vous recontactera sous 48h pour votre devis gratuit.</p>
-          <a href="tel:0422138611" className="text-xl font-semibold text-white">04 22 13 86 11</a>
+          <h3 className="text-2xl font-semibold text-green mb-3">Demande prête</h3>
+          <p className="text-white/60 mb-6">
+            Le formulaire est validé, mais aucun service d’envoi n’est encore connecté. Contactez GSE directement pour finaliser votre demande.
+          </p>
+          <div className="flex flex-col gap-3">
+            <a href="tel:0422138611" className="text-xl font-semibold text-white">04 22 13 86 11</a>
+            <a
+              href={`mailto:sf.gse.ecologie@gmail.com?subject=Demande%20de%20devis%20GSE%20Isolation&body=Nom%20:%20${encodeURIComponent(nom)}%0AT%C3%A9l%C3%A9phone%20:%20${encodeURIComponent(tel)}%0AE-mail%20:%20${encodeURIComponent(email)}%0ACode%20postal%20:%20${encodeURIComponent(cp)}%0AService%20:%20${encodeURIComponent(service)}`}
+              className="text-sm font-semibold text-green underline"
+            >
+              Envoyer par e-mail
+            </a>
+          </div>
         </motion.div>
       ) : (
         <motion.form
@@ -60,28 +70,28 @@ export default function ContactForm() {
           className="max-w-md mx-auto space-y-6"
         >
           <div>
-            <label className={labelClass}>Votre nom *</label>
-            <input name="nom" className={inputClass} value={nom} onChange={e => setNom(e.target.value)} type="text" autoComplete="name" required minLength={2} maxLength={80} />
+            <label htmlFor="nom" className={labelClass}>Votre nom *</label>
+            <input id="nom" name="nom" className={inputClass} value={nom} onChange={e => setNom(e.target.value)} type="text" autoComplete="name" required minLength={2} maxLength={80} />
           </div>
           <div>
-            <label className={labelClass}>Votre téléphone *</label>
-            <input name="telephone" className={inputClass} value={tel} onChange={e => setTel(e.target.value)} type="tel" autoComplete="tel" required minLength={8} maxLength={24} />
+            <label htmlFor="telephone" className={labelClass}>Votre téléphone *</label>
+            <input id="telephone" name="telephone" className={inputClass} value={tel} onChange={e => setTel(e.target.value)} type="tel" autoComplete="tel" required minLength={8} maxLength={24} />
           </div>
           <div>
-            <label className={labelClass}>Votre e-mail *</label>
-            <input name="email" className={inputClass} value={email} onChange={e => setEmail(e.target.value)} type="email" autoComplete="email" required maxLength={120} />
+            <label htmlFor="email" className={labelClass}>Votre e-mail *</label>
+            <input id="email" name="email" className={inputClass} value={email} onChange={e => setEmail(e.target.value)} type="email" autoComplete="email" required maxLength={120} />
           </div>
           <div>
-            <label className={labelClass}>Code postal</label>
-            <input name="code-postal" className={inputClass} value={cp} onChange={e => setCp(e.target.value)} type="text" inputMode="numeric" autoComplete="postal-code" pattern="[0-9]{5}" maxLength={5} />
+            <label htmlFor="code-postal" className={labelClass}>Code postal</label>
+            <input id="code-postal" name="code-postal" className={inputClass} value={cp} onChange={e => setCp(e.target.value)} type="text" inputMode="numeric" autoComplete="postal-code" pattern="[0-9]{5}" maxLength={5} />
           </div>
           <div className="hidden" aria-hidden="true">
             <label>Entreprise</label>
             <input name="entreprise" value={company} onChange={e => setCompany(e.target.value)} type="text" tabIndex={-1} autoComplete="off" />
           </div>
           <div>
-            <label className={labelClass}>Service souhaité</label>
-            <select name="service" className={`${inputClass} appearance-none`} value={service} onChange={e => setService(e.target.value)}>
+            <label htmlFor="service" className={labelClass}>Service souhaité</label>
+            <select id="service" name="service" className={`${inputClass} appearance-none`} value={service} onChange={e => setService(e.target.value)}>
               <option className="text-ink">Rénovation globale</option>
               <option className="text-ink">Isolation des murs par l'extérieur</option>
               <option className="text-ink">Isolation des combles</option>
