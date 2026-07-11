@@ -16,9 +16,9 @@ const projects = [
     type: 'Isolation extérieure / ITE',
     title: 'Façade isolée sur maison individuelle',
     text: "Pose d'une isolation thermique par l'extérieur pour améliorer l'enveloppe du logement et réduire les ponts thermiques.",
-    image: '/solutions/isolation-exterieure-card.jpg',
-    position: '42% 50%',
-    stats: ['ITE', '06 / 83', 'RGE'],
+    image: '/solutions/chantier-isolation-exterieure.png',
+    position: '43% 50%',
+    stats: ['Avant : façade préparée', 'Après : enveloppe traitée', 'Chantier suivi'],
   },
   {
     type: 'Isolation intérieure',
@@ -26,15 +26,15 @@ const projects = [
     text: "Travaux d'isolation intérieure avec matériaux performants, adaptés aux contraintes du bâti existant.",
     image: '/solutions/isolation-murs-card.jpg',
     position: '42% 50%',
-    stats: ['Confort', 'Déperditions', 'Sur devis'],
+    stats: ['Avant : paroi froide', 'Après : mur isolé', 'Pose intérieure'],
   },
   {
     type: 'Rénovation énergétique',
     title: 'Projet global avec accompagnement',
     text: 'Coordination des postes de travaux, priorisation technique et accompagnement sur les dispositifs financiers.',
-    image: '/hero-chantier.webp',
-    position: '58% 50%',
-    stats: ['Audit', 'Aides', 'Suivi'],
+    image: null,
+    position: '50% 50%',
+    stats: ['Avant : priorités floues', 'Après : plan cadré', 'Aides étudiées'],
   },
 ]
 
@@ -114,13 +114,24 @@ export default function RealisationsPage() {
   )
 }
 
-function ProjectImage({ image, position, label }: { image: string; position: string; label: string }) {
+function ProjectImage({ image, position, label }: { image: string | null; position: string; label: string }) {
   return (
     <div className="group relative min-h-[360px] overflow-hidden bg-[#1E1E1E] lg:min-h-[520px]">
-      <div
-        className="absolute inset-0 bg-cover transition-transform duration-700 group-hover:scale-105"
-        style={{ backgroundImage: `url('${image}')`, backgroundPosition: position }}
-      />
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_74%_18%,rgba(63,166,107,0.28),transparent_28%),linear-gradient(135deg,#E9E5DA_0%,#C8BFAE_46%,#706A5E_100%)] transition-transform duration-700 group-hover:scale-105" />
+      {image && (
+        <div
+          className="absolute inset-0 bg-cover transition-transform duration-700 group-hover:scale-105"
+          style={{ backgroundImage: `url('${image}')`, backgroundPosition: position }}
+        />
+      )}
+      {!image && (
+        <>
+          <div className="absolute inset-x-10 top-16 h-px bg-white/30" />
+          <div className="absolute bottom-24 left-10 h-32 w-px bg-white/25" />
+          <div className="absolute right-12 top-20 h-28 w-28 rounded-full border border-white/25" />
+          <div className="absolute bottom-12 right-16 h-14 w-44 rounded-full border border-white/15" />
+        </>
+      )}
       <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(30,30,30,0.08)_0%,rgba(30,30,30,0.18)_42%,rgba(30,30,30,0.64)_100%)]" />
       <span className="absolute bottom-6 left-6 rounded-full bg-white/90 px-4 py-2 text-[10px] font-bold uppercase tracking-[0.14em] text-[#1E1E1E] backdrop-blur-md">
         {label}
