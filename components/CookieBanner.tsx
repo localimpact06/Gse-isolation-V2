@@ -2,19 +2,48 @@
 import { useState, useEffect } from 'react'
 import { AnimatePresence, motion } from 'framer-motion'
 
-export default function CookieBanner() {
+type WindowWithGtag = Window & {
+  dataLayer?: unknown[]
+  gtag?: (...args: unknown[]) => void
+}
+
+export default function CookieBanner({ gaId }: { gaId?: string }) {
   const [visible, setVisible] = useState(false)
 
   useEffect(() => {
     const accepted = localStorage.getItem('gse-cookies-accepted')
     if (!accepted) setVisible(true)
-  }, [])
+    if (accepted === 'true') loadAnalytics()
+  }, [gaId])
+
+  function loadAnalytics() {
+    if (!gaId || typeof window === 'undefined') return
+    const win = window as WindowWithGtag
+    if (win.gtag) return
+
+    win.dataLayer = win.dataLayer || []
+    win.gtag = function gtag() {
+      win.dataLayer?.push(arguments)
+    }
+
+    const script = document.createElement('script')
+    script.async = true
+    script.src = `https://www.googletagmanager.com/gtag/js?id=${encodeURIComponent(gaId)}`
+    document.head.appendChild(script)
+
+    win.gtag('js', new Date())
+    win.gtag('config', gaId, { anonymize_ip: true })
+  }
 
   function accept() {
     localStorage.setItem('gse-cookies-accepted', 'true')
     setVisible(false)
-    // @ts-ignore
-    if (window.gtag) window.gtag('consent', 'update', { analytics_storage: 'granted' })
+    loadAnalytics()
+  }
+
+  function refuse() {
+    localStorage.setItem('gse-cookies-accepted', 'false')
+    setVisible(false)
   }
 
   return (
@@ -28,15 +57,23 @@ export default function CookieBanner() {
           className="fixed bottom-0 left-0 right-0 z-[9999] bg-ink/95 backdrop-blur-sm text-white px-6 py-4 flex flex-col sm:flex-row items-center justify-between gap-4"
         >
           <p className="text-xs text-white/60 flex-1">
-            Ce site utilise des cookies pour améliorer votre expérience et mesurer l'audience.{' '}
+            Ce site peut utiliser des cookies de mesure d’audience après votre accord. Aucun cookie publicitaire n’est déposé.{' '}
             <a href="/confidentialite/" className="text-green underline">En savoir plus</a>
           </p>
-          <button
-            onClick={accept}
-            className="bg-green hover:bg-green-dark transition-colors text-white text-[11px] font-semibold uppercase tracking-[0.1em] px-5 py-2.5 rounded-full whitespace-nowrap"
-          >
-            Accepter
-          </button>
+          <div className="flex gap-3">
+            <button
+              onClick={refuse}
+              className="rounded-full border border-white/15 px-5 py-2.5 text-[11px] font-semibold uppercase tracking-[0.1em] text-white/70 transition-colors hover:text-white"
+            >
+              Refuser
+            </button>
+            <button
+              onClick={accept}
+              className="bg-green hover:bg-green-dark transition-colors text-white text-[11px] font-semibold uppercase tracking-[0.1em] px-5 py-2.5 rounded-full whitespace-nowrap"
+            >
+              Accepter
+            </button>
+          </div>
         </motion.div>
       )}
     </AnimatePresence>
