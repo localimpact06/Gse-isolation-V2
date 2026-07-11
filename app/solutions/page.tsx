@@ -62,7 +62,7 @@ export default function SolutionsPage() {
           <div className="grid sm:grid-cols-2 gap-6">
             <Reveal delay={0.05}>
               <a href="/audit-energetique/" className="group block h-full overflow-hidden rounded-[24px] border border-[#E8E8E3] bg-white shadow-[0_18px_70px_rgba(30,30,30,0.055)] transition-all duration-500 hover:-translate-y-2 hover:border-green/25 hover:shadow-[0_34px_100px_rgba(30,30,30,0.12)]">
-                <SolutionVisual label="Audit" badge="Première étape" index={4} image="/solutions/isolation-exterieure-card.jpg" position="45% 50%" />
+                <SolutionVisual label="Audit" badge="Première étape" index={4} image={null} position="50% 50%" />
                 <div className="p-8">
                   <span className="text-green text-xs font-bold uppercase tracking-[0.18em]">Première étape</span>
                   <h3 className="mt-3 text-xl font-extrabold text-[#1E1E1E] transition-colors group-hover:text-green">Audit énergétique</h3>
@@ -72,11 +72,11 @@ export default function SolutionsPage() {
             </Reveal>
             <Reveal delay={0.1}>
               <a href="/renovation-energetique/" className="group block h-full overflow-hidden rounded-[24px] border border-[#E8E8E3] bg-white shadow-[0_18px_70px_rgba(30,30,30,0.055)] transition-all duration-500 hover:-translate-y-2 hover:border-green/25 hover:shadow-[0_34px_100px_rgba(30,30,30,0.12)]">
-                <SolutionVisual label="Global" badge="Projet complet" index={5} image="/hero-chantier.webp" position="58% 50%" />
+                <SolutionVisual label="Global" badge="Projet complet" index={5} image={null} position="50% 50%" />
                 <div className="p-8">
                   <span className="text-green text-xs font-bold uppercase tracking-[0.18em]">Projet complet</span>
                   <h3 className="mt-3 text-xl font-extrabold text-[#1E1E1E] transition-colors group-hover:text-green">Rénovation globale</h3>
-                  <p className="mt-3 text-sm leading-7 text-[#6A6A6A]">Isolation, chauffage et accompagnement de A à Z, aides jusqu'à 80 000€.</p>
+                  <p className="mt-3 text-sm leading-7 text-[#6A6A6A]">Isolation, chauffage et accompagnement de A à Z, avec étude des aides disponibles.</p>
                 </div>
               </a>
             </Reveal>
@@ -96,10 +96,10 @@ export default function SolutionsPage() {
 }
 
 const SOLUTION_VISUALS: Record<string, { image: string | null; position: string }> = {
-  'isolation-des-combles': { image: '/solutions/isolation-murs-card.jpg', position: '42% 50%' },
+  'isolation-des-combles': { image: null, position: '50% 50%' },
   'isolation-des-murs-par-linterieur': { image: '/solutions/isolation-murs-card.jpg', position: '38% 50%' },
   'isolation-des-planchers-bas': { image: null, position: '50% 50%' },
-  'isolation-des-murs-par-lexterieur': { image: '/solutions/isolation-exterieure-card.jpg', position: '42% 50%' },
+  'isolation-des-murs-par-lexterieur': { image: '/solutions/chantier-isolation-exterieure.png', position: '43% 50%' },
 }
 
 function SolutionVisual({
