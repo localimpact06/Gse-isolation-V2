@@ -17,7 +17,7 @@ export default function Testimonials() {
           </div>
         </Reveal>
         <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-          {avisReels.slice(0, 3).map((avis, i) => (
+          {avisReels.map((avis, i) => (
             <Reveal key={`${avis.auteur}-${avis.contexte}`} delay={i * 0.08}>
               <blockquote className="flex h-full flex-col rounded-[24px] border border-[#E8E8E3] bg-white p-7 shadow-[0_18px_70px_rgba(30,30,30,0.055)] transition-all duration-500 hover:-translate-y-2 hover:border-green/25 hover:shadow-[0_34px_100px_rgba(30,30,30,0.12)]">
                 <div className="mb-7 flex gap-1 text-green" aria-hidden="true">
