@@ -1,4 +1,6 @@
 import type { Metadata } from 'next'
+import { existsSync } from 'node:fs'
+import { join } from 'node:path'
 import Header from '@/components/Header'
 import Footer from '@/components/Footer'
 import PageHero from '@/components/PageHero'
@@ -11,34 +13,17 @@ export const metadata: Metadata = {
   alternates: { canonical: '/realisations/' },
 }
 
-const projects = [
-  {
-    type: 'Isolation extérieure / ITE',
-    title: 'Façade isolée sur maison individuelle',
-    text: "Pose d'une isolation thermique par l'extérieur pour améliorer l'enveloppe du logement et réduire les ponts thermiques.",
-    image: '/solutions/chantier-isolation-exterieure.png',
-    position: '43% 50%',
-    stats: ['Avant : façade préparée', 'Après : enveloppe traitée', 'Chantier suivi'],
-  },
-  {
-    type: 'Isolation intérieure',
-    title: 'Traitement thermique des murs',
-    text: "Travaux d'isolation intérieure avec matériaux performants, adaptés aux contraintes du bâti existant.",
-    image: '/solutions/isolation-murs-card.jpg',
-    position: '42% 50%',
-    stats: ['Avant : paroi froide', 'Après : mur isolé', 'Pose intérieure'],
-  },
-  {
-    type: 'Rénovation énergétique',
-    title: 'Projet global avec accompagnement',
-    text: 'Coordination des postes de travaux, priorisation technique et accompagnement sur les dispositifs financiers.',
-    image: null,
-    position: '50% 50%',
-    stats: ['Avant : priorités floues', 'Après : plan cadré', 'Aides étudiées'],
-  },
-]
+const imageStyle = {
+  objectFit: 'cover',
+  objectPosition: 'center',
+  display: 'block',
+  width: '100%',
+  height: '100%',
+} as const
 
 export default function RealisationsPage() {
+  const projects = PROJECTS.filter((project) => hasPublicImage(project.image))
+
   return (
     <>
       <Header />
@@ -46,55 +31,48 @@ export default function RealisationsPage() {
       <PageHero
         eyebrow="Nos réalisations"
         title="Des chantiers suivis avec méthode."
-        subtitle="Un aperçu de nos interventions en isolation et rénovation énergétique, avec une approche claire et mesurable."
+        subtitle="Un aperçu régulier de nos interventions en isolation, diagnostic et rénovation énergétique."
       />
 
-      <section className="bg-[#F7F7F5] px-6 py-28 md:px-10 lg:py-36">
-        <div className="mx-auto max-w-7xl">
-          <Reveal>
-            <div className="mb-16 max-w-3xl">
-              <span className="text-green text-[12px] font-bold uppercase tracking-[0.22em]">Preuves terrain</span>
-              <h2 className="mt-5 text-4xl font-extrabold leading-[1.04] tracking-tightest text-[#1E1E1E] md:text-5xl">
-                Des réalisations sobres, propres et lisibles.
-              </h2>
-              <p className="mt-6 max-w-2xl text-[15px] leading-8 text-[#6A6A6A]">
-                Nous préférons montrer des visuels exploitables et cohérents plutôt que d’afficher des images approximatives. Chaque projet présenté suit la même logique : diagnostic, faisabilité, devis, travaux.
-              </p>
-            </div>
-          </Reveal>
+      {projects.length > 0 ? (
+        <section className="bg-[#F7F7F5] px-6 py-28 md:px-10 lg:py-40">
+          <div className="mx-auto max-w-7xl">
+            <Reveal>
+              <div className="mb-16 max-w-3xl">
+                <span className="text-green text-[12px] font-bold uppercase tracking-[0.22em]">Preuves terrain</span>
+                <h2 className="mt-5 text-4xl font-extrabold leading-[1.04] tracking-tightest text-[#1E1E1E] md:text-5xl">
+                  Des images propres, des cartes alignées, aucun rendu bricolé.
+                </h2>
+                <p className="mt-6 max-w-2xl text-[15px] leading-8 text-[#6A6A6A]">
+                  Chaque réalisation présentée garde le même ratio, la même hauteur et le même langage visuel pour préserver une impression premium.
+                </p>
+              </div>
+            </Reveal>
 
-          <div className="space-y-8">
-            {projects.map((project, index) => (
-              <Reveal key={project.title} delay={index * 0.08}>
-                <article className="grid overflow-hidden rounded-[24px] border border-[#E8E8E3] bg-white shadow-[0_22px_80px_rgba(30,30,30,0.06)] transition-all duration-500 hover:-translate-y-1 hover:shadow-[0_34px_100px_rgba(30,30,30,0.1)] lg:grid-cols-[1.08fr_0.92fr]">
-                  <div className={index % 2 === 1 ? 'lg:order-2' : ''}>
-                    <ProjectImage image={project.image} position={project.position} label={project.type} />
-                  </div>
-                  <div className={`flex flex-col justify-center p-7 md:p-10 ${index % 2 === 1 ? 'lg:order-1' : ''}`}>
-                    <span className="text-green text-[12px] font-bold uppercase tracking-[0.2em]">{project.type}</span>
-                    <h3 className="mt-4 text-2xl font-extrabold tracking-tight text-[#1E1E1E] md:text-3xl">
-                      {project.title}
-                    </h3>
-                    <p className="mt-5 text-[15px] leading-8 text-[#6A6A6A]">
-                      {project.text}
-                    </p>
-                    <div className="mt-8 flex flex-wrap gap-3">
-                      {project.stats.map((stat) => (
-                        <span key={stat} className="rounded-full border border-[#E8E8E3] bg-[#FAFAF8] px-4 py-2 text-xs font-bold uppercase tracking-[0.12em] text-[#1E1E1E]/70">
-                          {stat}
-                        </span>
-                      ))}
+            <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+              {projects.map((project, index) => (
+                <Reveal key={project.title} delay={index * 0.05}>
+                  <article className="group h-full overflow-hidden rounded-[24px] border border-[#E8E8E3] bg-white shadow-[0_18px_70px_rgba(30,30,30,0.055)] transition-all duration-500 hover:-translate-y-1.5 hover:border-green/25 hover:shadow-[0_30px_90px_rgba(30,30,30,0.11)]">
+                    <ProjectImage src={project.image} alt={project.alt} />
+                    <div className="p-6">
+                      <span className="text-[11px] font-bold uppercase tracking-[0.18em] text-green">{project.type}</span>
+                      <h3 className="mt-3 text-xl font-extrabold tracking-tight text-[#1E1E1E]">{project.title}</h3>
+                      <p className="mt-3 text-sm leading-7 text-[#6A6A6A]">{project.text}</p>
+                      <div className="mt-6 flex flex-wrap gap-2">
+                        {project.stats.map((stat) => (
+                          <span key={stat} className="rounded-full border border-[#E8E8E3] bg-[#FAFAF8] px-3 py-1.5 text-[10px] font-bold uppercase tracking-[0.12em] text-[#1E1E1E]/70">
+                            {stat}
+                          </span>
+                        ))}
+                      </div>
                     </div>
-                    <a href="/contact/" className="mt-9 inline-flex w-fit items-center gap-3 rounded-full bg-[#1E1E1E] px-7 py-4 text-[12px] font-bold uppercase tracking-[0.12em] text-white shadow-[0_18px_50px_rgba(30,30,30,0.14)] transition-all duration-300 hover:-translate-y-0.5 hover:bg-green">
-                      Un projet similaire ? <span>→</span>
-                    </a>
-                  </div>
-                </article>
-              </Reveal>
-            ))}
+                  </article>
+                </Reveal>
+              ))}
+            </div>
           </div>
-        </div>
-      </section>
+        </section>
+      ) : null}
 
       <section className="bg-[#FAFAF8] px-6 py-24 text-center md:px-10">
         <Reveal>
@@ -114,28 +92,108 @@ export default function RealisationsPage() {
   )
 }
 
-function ProjectImage({ image, position, label }: { image: string | null; position: string; label: string }) {
+const PROJECTS = [
+  {
+    type: 'ITE',
+    title: 'Isolation extérieure en cours',
+    text: 'Pose structurée avec échafaudage, façade préparée et chantier suivi.',
+    image: '/gse/chantier-ite.jpg',
+    alt: 'Chantier d’isolation thermique extérieure sur maison',
+    stats: ['Façade', 'ITE', 'Suivi'],
+  },
+  {
+    type: 'Résultat',
+    title: 'Maison rénovée',
+    text: 'Façade homogène, lignes sobres et résultat final valorisant.',
+    image: '/gse/maison-renovee.jpg',
+    alt: 'Maison rénovée après intervention GSE Isolation',
+    stats: ['Après', 'Façade', 'Confort'],
+  },
+  {
+    type: 'Audit',
+    title: 'Contrôle thermique',
+    text: 'Lecture des déperditions avant de prioriser les travaux.',
+    image: '/gse/camera-thermique.jpg',
+    alt: 'Caméra thermique mesurant les déperditions dans une pièce',
+    stats: ['Mesure', 'Diagnostic', 'Priorités'],
+  },
+  {
+    type: 'Murs',
+    title: 'Isolation intérieure',
+    text: 'Pose de laine isolante avec attention portée au geste et à la finition.',
+    image: '/gse/isolation-murs.jpg',
+    alt: 'Pose de laine isolante sur une ossature de mur intérieur',
+    stats: ['Parois', 'Pose', 'Finitions'],
+  },
+  {
+    type: 'Camion',
+    title: 'Préparation chantier',
+    text: 'Matériel rangé, équipe identifiable et intervention organisée.',
+    image: '/gse/hero-camion.jpg',
+    alt: 'Technicien GSE préparant son matériel dans le camion',
+    stats: ['Logistique', 'Équipe', 'Terrain'],
+  },
+  {
+    type: 'Planchers',
+    title: 'Vide sanitaire isolé',
+    text: 'Pose par sous-face pour réduire les sols froids et les pertes basses.',
+    image: '/gse/plancher-bas.jpg',
+    alt: 'Technicien GSE posant une isolation en vide sanitaire',
+    stats: ['Sous-face', 'Confort', 'Méthode'],
+  },
+  {
+    type: 'Aides',
+    title: 'Budget cadré',
+    text: 'MaPrimeRénov’, CEE et TVA réduite étudiés avant engagement.',
+    image: '/gse/aides-financieres.jpg',
+    alt: 'Documents MaPrimeRénov, CEE et TVA réduite sur un bureau GSE',
+    stats: ['Aides', 'Budget', 'Dossier'],
+  },
+  {
+    type: 'Diagnostic',
+    title: 'Audit en logement occupé',
+    text: 'Contrôle thermique dans un intérieur existant pour objectiver les pertes.',
+    image: '/gse/audit-salon.jpg',
+    alt: 'Technicien GSE réalisant un contrôle thermique intérieur',
+    stats: ['Thermique', 'Salon', 'Lecture'],
+  },
+  {
+    type: 'Visite',
+    title: 'Conseil sur site',
+    text: 'Échange avec le client, explications et cadrage du projet.',
+    image: '/gse/visite-client.jpg',
+    alt: 'Technicien GSE présentant un dossier à un client devant une maison',
+    stats: ['Conseil', 'Devis', 'Suivi'],
+  },
+]
+
+function ProjectImage({ src, alt }: { src: string; alt: string }) {
+  const image = getPublicImage(src)
+
+  if (!image) {
+    return null
+  }
+
   return (
-    <div className="group relative min-h-[360px] overflow-hidden bg-[#1E1E1E] lg:min-h-[520px]">
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_74%_18%,rgba(63,166,107,0.28),transparent_28%),linear-gradient(135deg,#E9E5DA_0%,#C8BFAE_46%,#706A5E_100%)] transition-transform duration-700 group-hover:scale-105" />
-      {image && (
-        <div
-          className="absolute inset-0 bg-cover transition-transform duration-700 group-hover:scale-105"
-          style={{ backgroundImage: `url('${image}')`, backgroundPosition: position }}
-        />
-      )}
-      {!image && (
-        <>
-          <div className="absolute inset-x-10 top-16 h-px bg-white/30" />
-          <div className="absolute bottom-24 left-10 h-32 w-px bg-white/25" />
-          <div className="absolute right-12 top-20 h-28 w-28 rounded-full border border-white/25" />
-          <div className="absolute bottom-12 right-16 h-14 w-44 rounded-full border border-white/15" />
-        </>
-      )}
-      <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(30,30,30,0.08)_0%,rgba(30,30,30,0.18)_42%,rgba(30,30,30,0.64)_100%)]" />
-      <span className="absolute bottom-6 left-6 rounded-full bg-white/90 px-4 py-2 text-[10px] font-bold uppercase tracking-[0.14em] text-[#1E1E1E] backdrop-blur-md">
-        {label}
-      </span>
+    <div className="relative aspect-[3/4] overflow-hidden bg-[#F7F7F5]">
+      <img
+        src={image}
+        alt={alt}
+        loading="lazy"
+        decoding="async"
+        className="absolute inset-0 transition-transform duration-700 group-hover:scale-[1.02]"
+        style={imageStyle}
+      />
+      <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(30,30,30,0.02)_0%,rgba(30,30,30,0.18)_100%)]" />
     </div>
   )
+}
+
+function getPublicImage(src: string) {
+  const filePath = join(process.cwd(), 'public', src.replace(/^\//, ''))
+  return existsSync(filePath) ? src : null
+}
+
+function hasPublicImage(src: string) {
+  return Boolean(getPublicImage(src))
 }
