@@ -1,9 +1,9 @@
 import Reveal from './Reveal'
 
 const proofs = [
-  { value: '15+', label: "ans d'expérience" },
   { value: '06 / 83', label: "Alpes-Maritimes & Var" },
-  { value: 'RGE', label: 'qualité certifiée' },
+  { value: 'Audit', label: 'lecture technique' },
+  { value: 'Aides', label: 'dossier étudié' },
 ]
 
 export default function HomeHero() {

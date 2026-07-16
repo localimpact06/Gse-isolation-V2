@@ -63,13 +63,13 @@ function getResult(totalScore: number) {
     return {
       titre: 'Bon potentiel d\'économies',
       pourcentage: '30 à 50%',
-      texte: 'Quelques travaux ciblés, comme l\'isolation des combles ou des murs, pourraient déjà faire une vraie différence sur votre facture. Un audit gratuit vous dira précisément où concentrer votre budget.',
+      texte: 'Quelques travaux ciblés, comme l\'isolation des combles ou des murs, pourraient déjà faire une vraie différence sur votre facture. Un audit permet de préciser où concentrer votre budget.',
     }
   }
   return {
     titre: 'Potentiel d\'optimisation',
     pourcentage: '10 à 25%',
-    texte: 'Votre logement est plutôt bien parti, mais quelques ajustements ciblés restent souvent rentables. Un audit gratuit permet de vérifier s\'il reste des économies faciles à aller chercher.',
+      texte: 'Votre logement est plutôt bien parti, mais quelques ajustements ciblés restent souvent rentables. Un audit permet de vérifier s\'il reste des économies faciles à aller chercher.',
   }
 }
 
@@ -126,7 +126,7 @@ export default function Quiz() {
             <p className="text-[15px] text-ink/60 leading-relaxed mb-8 max-w-md mx-auto">{result!.texte}</p>
             <div className="flex flex-col sm:flex-row gap-3 justify-center">
               <a href="/contact/" className="bg-green hover:bg-green-dark transition-colors text-white text-[13px] font-semibold uppercase tracking-[0.1em] px-7 py-4 rounded-full">
-                Demander mon audit gratuit
+                Demander mon audit
               </a>
               <button onClick={restart} className="border border-ink/15 hover:border-ink/40 transition-colors text-[13px] font-semibold uppercase tracking-[0.1em] px-7 py-4 rounded-full">
                 Refaire le quiz

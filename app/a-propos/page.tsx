@@ -5,10 +5,14 @@ import PageHero from '@/components/PageHero'
 import Breadcrumb from '@/components/Breadcrumb'
 import ContentSection from '@/components/ContentSection'
 import Reveal from '@/components/Reveal'
+import { WebPageJsonLd } from '@/components/seo/PageJsonLd'
+
+const pageTitle = "À propos"
+const pageDescription = "GSE Isolation, entreprise spécialisée en rénovation énergétique à Saint-Paul-de-Vence, Alpes-Maritimes."
 
 export const metadata: Metadata = {
-  title: "À Propos — GSE Isolation",
-  description: "GSE Isolation, entreprise spécialisée en rénovation énergétique à Saint-Paul-de-Vence, Alpes-Maritimes.",
+  title: pageTitle,
+  description: pageDescription,
   alternates: { canonical: '/a-propos/' },
 }
 
@@ -16,6 +20,12 @@ export default function AProposPage() {
   return (
     <>
       <Header />
+      <WebPageJsonLd
+        path="/a-propos/"
+        title={pageTitle}
+        description={pageDescription}
+        breadcrumbs={[{ name: 'Accueil', url: '/' }, { name: 'À propos', url: '/a-propos/' }]}
+      />
       <Breadcrumb items={[{ label: 'Accueil', href: '/' }, { label: 'À propos' }]} />
       <PageHero
         eyebrow="L'entreprise"

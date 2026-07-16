@@ -5,10 +5,14 @@ import Footer from '@/components/Footer'
 import PageHero from '@/components/PageHero'
 import Breadcrumb from '@/components/Breadcrumb'
 import Reveal from '@/components/Reveal'
+import { WebPageJsonLd } from '@/components/seo/PageJsonLd'
+
+const pageTitle = "Nos Zones d'Intervention — 20 Villes"
+const pageDescription = "GSE Isolation intervient dans 20 villes des Alpes-Maritimes et du Var pour vos travaux de rénovation énergétique."
 
 export const metadata: Metadata = {
-  title: "Nos Zones d'Intervention — 20 Villes",
-  description: "GSE Isolation intervient dans 20 villes des Alpes-Maritimes et du Var pour vos travaux de rénovation énergétique.",
+  title: pageTitle,
+  description: pageDescription,
   alternates: { canonical: '/villes/' },
 }
 
@@ -16,6 +20,12 @@ export default function VillesIndex() {
   return (
     <>
       <Header />
+      <WebPageJsonLd
+        path="/villes/"
+        title={pageTitle}
+        description={pageDescription}
+        breadcrumbs={[{ name: 'Accueil', url: '/' }, { name: 'Villes', url: '/villes/' }]}
+      />
       <Breadcrumb items={[{ label: 'Accueil', href: '/' }, { label: 'Nos villes' }]} />
       <PageHero eyebrow="Zones d'intervention" title="Nos 20 villes" subtitle="Alpes-Maritimes et Var — équipe locale basée à Saint-Paul-de-Vence" />
 

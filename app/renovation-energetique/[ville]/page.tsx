@@ -6,6 +6,8 @@ import PageHero from '@/components/PageHero'
 import Breadcrumb from '@/components/Breadcrumb'
 import ContentSection from '@/components/ContentSection'
 import { notFound } from 'next/navigation'
+import JsonLd from '@/components/seo/JsonLd'
+import { ServiceJsonLd, WebPageJsonLd } from '@/components/seo/PageJsonLd'
 
 export function generateStaticParams() {
   return villes.map(v => ({ ville: v.slug }))
@@ -16,8 +18,8 @@ export async function generateMetadata({ params }: { params: Promise<{ ville: st
   const v = getVille(ville)
   if (!v) return {}
   return {
-    title: `Rénovation Énergétique à ${v.nom} — GSE Isolation`,
-    description: `Isolation thermique, audit énergétique et rénovation globale à ${v.nom}. Aides étudiées selon votre éligibilité. Devis gratuit GSE Isolation.`,
+    title: `Rénovation énergétique à ${v.nom}`,
+    description: `Isolation thermique, audit énergétique et rénovation globale à ${v.nom}. Aides étudiées selon votre éligibilité avec GSE Isolation.`,
     alternates: { canonical: `/renovation-energetique/${v.slug}/` },
   }
 }
@@ -28,23 +30,55 @@ export default async function VillePage({ params }: { params: Promise<{ ville: s
   if (!v) notFound()
 
   const autres = villes.filter(w => w.slug !== v.slug).slice(0, 6)
+  const pagePath = `/renovation-energetique/${v.slug}/`
+  const pageTitle = `Rénovation énergétique à ${v.nom}`
+  const pageDescription = `Isolation thermique, audit énergétique et rénovation globale à ${v.nom}. Aides étudiées selon votre éligibilité avec GSE Isolation.`
+  const faq = [
+    {
+      question: `Combien coûtent les travaux à ${v.nom} ?`,
+      answer: 'Cela dépend de la surface, du type de bien et des travaux retenus. Un devis personnalisé est établi après échange et visite technique lorsque le projet le nécessite.',
+    },
+    {
+      question: 'Quels délais pour les travaux ?',
+      answer: 'Les délais dépendent de la disponibilité des équipes, de la validation du devis, des démarches administratives et de la nature des travaux.',
+    },
+    {
+      question: `Puis-je cumuler plusieurs aides pour mon projet à ${v.nom} ?`,
+      answer: "MaPrimeRénov', les CEE, la TVA réduite et l'Éco-PTZ peuvent être étudiés selon votre situation et les conditions officielles en vigueur.",
+    },
+    {
+      question: `Intervenez-vous à ${v.nom} ?`,
+      answer: `GSE Isolation intervient dans le secteur de ${v.nom} depuis son implantation à Saint-Paul-de-Vence, selon la faisabilité et le planning des équipes.`,
+    },
+  ]
 
   return (
     <>
       <Header />
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify({
-        "@context": "https://schema.org", "@type": "Service",
-        "name": `Rénovation énergétique à ${v.nom}`,
-        "provider": { "@type": "LocalBusiness", "name": "GSE Isolation" },
-        "areaServed": v.nom, "serviceType": "Rénovation énergétique",
-      }) }} />
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify({
-        "@context": "https://schema.org", "@type": "FAQPage",
-        "mainEntity": [
-          { "@type": "Question", "name": `Combien coûtent les travaux à ${v.nom} ?`, "acceptedAnswer": { "@type": "Answer", "text": "Cela dépend de la surface et du type de bien. Un conseiller GSE propose un devis gratuit et personnalisé après une visite technique." } },
-          { "@type": "Question", "name": "Quels délais pour les travaux ?", "acceptedAnswer": { "@type": "Answer", "text": "Audit sous une semaine, montage des démarches d'aides en 2 à 3 semaines, puis travaux planifiés selon votre disponibilité." } },
-        ]
-      }) }} />
+      <WebPageJsonLd
+        path={pagePath}
+        title={pageTitle}
+        description={pageDescription}
+        breadcrumbs={[{ name: 'Accueil', url: '/' }, { name: 'Rénovation énergétique', url: '/renovation-energetique/' }, { name: v.nom, url: pagePath }]}
+      />
+      <ServiceJsonLd
+        path={pagePath}
+        name={`Rénovation énergétique à ${v.nom}`}
+        description={pageDescription}
+        serviceType="Rénovation énergétique"
+        areaServed={v.nom}
+      />
+      <JsonLd
+        data={{
+          '@context': 'https://schema.org',
+          '@type': 'FAQPage',
+          mainEntity: faq.map((item) => ({
+            '@type': 'Question',
+            name: item.question,
+            acceptedAnswer: { '@type': 'Answer', text: item.answer },
+          })),
+        }}
+      />
 
       <Breadcrumb items={[{ label: 'Accueil', href: '/' }, { label: 'Rénovation énergétique', href: '/renovation-energetique/' }, { label: v.nom }]} />
       <PageHero eyebrow="Rénovation énergétique" title={`${v.nom}`} subtitle={`Isolation, audit énergétique et rénovation globale à ${v.nom} — aides étudiées selon votre projet`} />
@@ -55,16 +89,16 @@ export default async function VillePage({ params }: { params: Promise<{ ville: s
           GSE Isolation intervient à {v.nom} pour vous accompagner dans tous vos travaux de rénovation énergétique :{' '}
           <a href="/isolation-thermique/">isolation thermique</a> des murs, combles et planchers,{' '}
           <a href="/renovation-energetique/">rénovation énergétique globale</a> et{' '}
-          <a href="/audit-energetique/">audit énergétique gratuit</a>.
+          <a href="/audit-energetique/">audit énergétique</a>.
           Notre équipe locale, basée à Saint-Paul-de-Vence, se déplace dans tout le secteur de {v.nom} pour évaluer votre projet et vous accompagner de A à Z.
         </p>
 
         <h2>Isolation thermique à {v.nom} : nos prix</h2>
         <p>
           À {v.nom} comme partout dans notre zone d'intervention, nous proposons trois solutions principales d'isolation :{' '}
-          <a href="/isolation-thermique/isolation-des-murs-par-lexterieur/">l'isolation des murs par l'extérieur</a> à partir de 120€/m² (aides non déduites),{' '}
-          <a href="/isolation-thermique/isolation-des-combles/">l'isolation des combles</a> à partir de 23€/m² aides déduites, et{' '}
-          <a href="/isolation-thermique/isolation-des-planchers-bas/">l'isolation des planchers bas</a> à partir de 30€/m² aides déduites.
+          <a href="/isolation-thermique/isolation-des-murs-par-lexterieur/">l'isolation des murs par l'extérieur</a>,{' '}
+          <a href="/isolation-thermique/isolation-des-combles/">l'isolation des combles</a>, et{' '}
+          <a href="/isolation-thermique/isolation-des-planchers-bas/">l'isolation des planchers bas</a>.
           Pour les logements en copropriété ou les façades classées de {v.nom}, nous proposons également une{' '}
           <a href="/isolation-thermique/isolation-des-murs-par-linterieur/">isolation par l'intérieur</a> sur devis.
         </p>
@@ -88,8 +122,8 @@ export default async function VillePage({ params }: { params: Promise<{ ville: s
 
         <h2>Aides disponibles à {v.nom}</h2>
         <p>
-          Les propriétaires de {v.nom} peuvent bénéficier de plusieurs aides cumulables selon leur profil : <strong>MaPrimeRénov'</strong>,{' '}
-          <strong>CEE</strong> versés par les fournisseurs d'énergie, <strong>TVA réduite à 5,5%</strong> au lieu de 20%, et l'<strong>Éco-prêt à taux zéro</strong> jusqu'à 50 000€ sans intérêt.
+          Les propriétaires de {v.nom} peuvent faire étudier plusieurs dispositifs selon leur profil : <strong>MaPrimeRénov'</strong>,{' '}
+          <strong>CEE</strong>, <strong>TVA réduite</strong> et <strong>Éco-prêt à taux zéro</strong>.
           GSE Isolation vous accompagne dans les démarches administratives, de la simulation initiale au suivi du dossier.
         </p>
 
@@ -101,15 +135,14 @@ export default async function VillePage({ params }: { params: Promise<{ ville: s
 
         <h2>Avis clients</h2>
         <p>
-          Les avis certifiés et références chantier sont à consulter depuis les supports officiels de l’entreprise ou à demander lors de l’échange commercial.
+          Les avis publiés et références chantier sont à consulter depuis les supports officiels de l’entreprise ou à demander lors de l’échange commercial.
           Aucun témoignage nominatif n’est affiché ici sans validation explicite.
         </p>
 
         <h2>Questions fréquentes sur la rénovation énergétique à {v.nom}</h2>
-        <p><strong>Combien coûtent les travaux à {v.nom} ?</strong><br />Cela dépend de la surface et du type de bien. Un conseiller GSE vous propose un devis gratuit et personnalisé après une visite technique.</p>
-        <p><strong>Quels délais pour les travaux ?</strong><br />Audit sous une semaine, montage des démarches d'aides en 2 à 3 semaines, puis travaux planifiés selon votre disponibilité.</p>
-        <p><strong>Puis-je cumuler plusieurs aides pour mon projet à {v.nom} ?</strong><br />Oui, MaPrimeRénov', les CEE, la TVA réduite et l'Éco-PTZ sont entièrement cumulables.</p>
-        <p><strong>Intervenez-vous rapidement à {v.nom} ?</strong><br />Oui, notre équipe basée à Saint-Paul-de-Vence se déplace rapidement, avec un premier contact généralement sous 48h.</p>
+        {faq.map((item) => (
+          <p key={item.question}><strong>{item.question}</strong><br />{item.answer}</p>
+        ))}
 
         <h2>Autres villes à proximité</h2>
         <p>

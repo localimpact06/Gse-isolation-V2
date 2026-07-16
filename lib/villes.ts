@@ -67,7 +67,7 @@ export const villes: Ville[] = [
   { slug: "vence", nom: "Vence", tier: 3,
     quartiers: "Vieille Ville, Saint-Jeannet, plateau de Vence, Les Baous",
     climat: "En altitude sur son plateau, Vence connaît des hivers nettement plus frais que le littoral. L'isolation des combles y représente un investissement particulièrement rentable.",
-    habitat: "Maisons de village en pierre et constructions plus récentes coexistent à Vence, chacune avec des besoins d'isolation spécifiques évalués lors de notre audit énergétique gratuit." },
+    habitat: "Maisons de village en pierre et constructions plus récentes coexistent à Vence, chacune avec des besoins d'isolation spécifiques évalués lors de l'étude énergétique du projet." },
   { slug: "vallauris", nom: "Vallauris", tier: 3,
     quartiers: "Centre-ville, Golfe-Juan, Le Plan",
     climat: "Vallauris bénéficie d'un climat méditerranéen classique avec une bonne exposition au soleil toute l'année.",

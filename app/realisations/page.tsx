@@ -6,10 +6,14 @@ import Footer from '@/components/Footer'
 import PageHero from '@/components/PageHero'
 import Breadcrumb from '@/components/Breadcrumb'
 import Reveal from '@/components/Reveal'
+import { WebPageJsonLd } from '@/components/seo/PageJsonLd'
+
+const pageTitle = "Nos Réalisations — Rénovation Énergétique"
+const pageDescription = "Découvrez les chantiers de rénovation énergétique GSE Isolation en Alpes-Maritimes : isolation, accompagnement et performance."
 
 export const metadata: Metadata = {
-  title: "Nos Réalisations — Rénovation Énergétique",
-  description: "Découvrez les chantiers de rénovation énergétique GSE Isolation en Alpes-Maritimes : isolation, accompagnement et performance.",
+  title: pageTitle,
+  description: pageDescription,
   alternates: { canonical: '/realisations/' },
 }
 
@@ -27,6 +31,12 @@ export default function RealisationsPage() {
   return (
     <>
       <Header />
+      <WebPageJsonLd
+        path="/realisations/"
+        title={pageTitle}
+        description={pageDescription}
+        breadcrumbs={[{ name: 'Accueil', url: '/' }, { name: 'Réalisations', url: '/realisations/' }]}
+      />
       <Breadcrumb items={[{ label: 'Accueil', href: '/' }, { label: 'Réalisations' }]} />
       <PageHero
         eyebrow="Nos réalisations"

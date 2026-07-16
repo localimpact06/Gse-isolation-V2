@@ -7,10 +7,14 @@ import PageHero from '@/components/PageHero'
 import Breadcrumb from '@/components/Breadcrumb'
 import Reveal from '@/components/Reveal'
 import { servicesIso } from '@/lib/services-iso'
+import { WebPageJsonLd } from '@/components/seo/PageJsonLd'
+
+const pageTitle = "Nos Solutions — Rénovation Énergétique"
+const pageDescription = "Isolation thermique, audit énergétique et rénovation globale. Découvrez toutes nos solutions de rénovation énergétique en Alpes-Maritimes."
 
 export const metadata: Metadata = {
-  title: "Nos Solutions — Rénovation Énergétique",
-  description: "Isolation thermique, audit énergétique et rénovation globale. Découvrez toutes nos solutions de rénovation énergétique en Alpes-Maritimes.",
+  title: pageTitle,
+  description: pageDescription,
   alternates: { canonical: '/solutions/' },
 }
 
@@ -31,6 +35,12 @@ export default function SolutionsPage() {
   return (
     <>
       <Header />
+      <WebPageJsonLd
+        path="/solutions/"
+        title={pageTitle}
+        description={pageDescription}
+        breadcrumbs={[{ name: 'Accueil', url: '/' }, { name: 'Solutions', url: '/solutions/' }]}
+      />
       <Breadcrumb items={[{ label: 'Accueil', href: '/' }, { label: 'Solutions' }]} />
       <PageHero
         eyebrow="Nos solutions"
@@ -128,7 +138,7 @@ const SUPPORT_SOLUTIONS = [
     href: '/audit-energetique/',
     title: 'Audit énergétique',
     badge: 'Première étape',
-    text: 'Diagnostic complet de votre logement, gratuit avec demande de devis.',
+    text: 'Diagnostic complet de votre logement avec demande de devis.',
     image: '/gse/camera-thermique.jpg',
     alt: 'Caméra thermique mesurant les déperditions dans une pièce',
   },

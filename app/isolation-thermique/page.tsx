@@ -6,10 +6,14 @@ import Breadcrumb from '@/components/Breadcrumb'
 import ContentSection from '@/components/ContentSection'
 import Reveal from '@/components/Reveal'
 import { servicesIso } from '@/lib/services-iso'
+import { WebPageJsonLd } from '@/components/seo/PageJsonLd'
+
+const pageTitle = "Isolation Thermique — Murs, Combles, Planchers"
+const pageDescription = "Isolation thermique des murs, combles et planchers bas. Devis personnalisé et aides étudiées selon votre situation."
 
 export const metadata: Metadata = {
-  title: "Isolation Thermique — Murs, Combles, Planchers",
-  description: "Isolation thermique des murs, combles et planchers bas. Devis personnalisé et aides étudiées selon votre situation.",
+  title: pageTitle,
+  description: pageDescription,
   alternates: { canonical: '/isolation-thermique/' },
 }
 
@@ -17,6 +21,12 @@ export default function IsolationPage() {
   return (
     <>
       <Header />
+      <WebPageJsonLd
+        path="/isolation-thermique/"
+        title={pageTitle}
+        description={pageDescription}
+        breadcrumbs={[{ name: 'Accueil', url: '/' }, { name: 'Isolation thermique', url: '/isolation-thermique/' }]}
+      />
       <Breadcrumb items={[{ label: 'Accueil', href: '/' }, { label: 'Isolation thermique' }]} />
       <PageHero eyebrow="Nos solutions" title="Isolation thermique" subtitle="Murs, combles, planchers bas — aides étudiées selon votre projet" />
 

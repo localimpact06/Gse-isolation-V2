@@ -6,6 +6,7 @@ import PageHero from '@/components/PageHero'
 import Breadcrumb from '@/components/Breadcrumb'
 import ContentSection from '@/components/ContentSection'
 import { notFound } from 'next/navigation'
+import { ArticleJsonLd, WebPageJsonLd } from '@/components/seo/PageJsonLd'
 
 export function generateStaticParams() {
   return articles.map(a => ({ slug: a.slug }))
@@ -31,11 +32,18 @@ export default async function ArticlePage({ params }: { params: Promise<{ slug: 
   return (
     <>
       <Header />
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify({
-        "@context": "https://schema.org", "@type": "Article",
-        "headline": a.titre, "datePublished": a.date,
-        "author": { "@type": "Organization", "name": "GSE Isolation" },
-      }) }} />
+      <WebPageJsonLd
+        path={`/blog/${a.slug}/`}
+        title={a.titre}
+        description={a.metaDescription}
+        breadcrumbs={[{ name: 'Accueil', url: '/' }, { name: 'Blog', url: '/blog/' }, { name: a.titre, url: `/blog/${a.slug}/` }]}
+      />
+      <ArticleJsonLd
+        path={`/blog/${a.slug}/`}
+        title={a.titre}
+        datePublished={a.date}
+        description={a.metaDescription}
+      />
 
       <Breadcrumb items={[{ label: 'Accueil', href: '/' }, { label: 'Blog', href: '/blog/' }, { label: a.titre }]} />
       <PageHero
@@ -58,7 +66,7 @@ export default async function ArticlePage({ params }: { params: Promise<{ slug: 
           <p>
             Sur le sujet « {a.titre.toLowerCase()} », le point essentiel à retenir est que ces travaux s'inscrivent rarement isolément :
             ils gagnent en efficacité et en rentabilité lorsqu'ils sont intégrés à un projet de rénovation cohérent, avec un audit énergétique préalable pour prioriser les bons postes de travaux.
-            GSE Isolation, certifiée Qualibat RGE, vous accompagne dans cette réflexion dès le premier contact, sans engagement de votre part.
+            GSE Isolation vous accompagne dans cette réflexion dès le premier contact, sans engagement de votre part.
           </p>
         </div>
 
@@ -68,7 +76,7 @@ export default async function ArticlePage({ params }: { params: Promise<{ slug: 
           {' · '}
           <a href="/renovation-energetique/">Rénovation globale</a>
           {' · '}
-          <a href="/audit-energetique/">Audit énergétique gratuit</a>
+          <a href="/audit-energetique/">Audit énergétique</a>
           {' · '}
           <a href="/aides-renovation-energetique/">Aides &amp; financement</a>
         </p>

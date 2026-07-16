@@ -6,13 +6,14 @@ import Breadcrumb from '@/components/Breadcrumb'
 import ContentSection from '@/components/ContentSection'
 import { getServiceIso, servicesIso } from '@/lib/services-iso'
 import { notFound } from 'next/navigation'
+import { ServiceJsonLd, WebPageJsonLd } from '@/components/seo/PageJsonLd'
 
 const SLUG = 'isolation-des-combles'
 
 export function generateMetadata(): Metadata {
   const s = getServiceIso(SLUG)!
   return {
-    title: `${s.titre} — ${s.prix} | GSE Isolation`,
+    title: `${s.titre} — ${s.prix}`,
     description: `${s.titre}. À partir de ${s.prix} (${s.prixNote}). ${s.economie}. Devis gratuit GSE Isolation.`,
     alternates: { canonical: `/isolation-thermique/${s.slug}/` },
   }
@@ -26,6 +27,18 @@ export default function Page() {
   return (
     <>
       <Header />
+      <WebPageJsonLd
+        path={`/isolation-thermique/${s.slug}/`}
+        title={s.titre}
+        description={s.intro}
+        breadcrumbs={[{ name: 'Accueil', url: '/' }, { name: 'Isolation thermique', url: '/isolation-thermique/' }, { name: s.titre, url: `/isolation-thermique/${s.slug}/` }]}
+      />
+      <ServiceJsonLd
+        path={`/isolation-thermique/${s.slug}/`}
+        name={s.titre}
+        description={s.intro}
+        serviceType="Isolation thermique"
+      />
       <Breadcrumb items={[{ label: 'Accueil', href: '/' }, { label: 'Isolation thermique', href: '/isolation-thermique/' }, { label: s.titre }]} />
       <PageHero eyebrow="Isolation thermique" title={s.titre} subtitle={`${s.economie} — à partir de ${s.prix} (${s.prixNote})`} />
 

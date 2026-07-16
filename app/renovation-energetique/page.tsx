@@ -5,10 +5,14 @@ import Footer from '@/components/Footer'
 import PageHero from '@/components/PageHero'
 import Breadcrumb from '@/components/Breadcrumb'
 import ContentSection from '@/components/ContentSection'
+import { ServiceJsonLd, WebPageJsonLd } from '@/components/seo/PageJsonLd'
+
+const pageTitle = "Rénovation Énergétique — Isolation, Audit"
+const pageDescription = "Rénovation énergétique globale en Alpes-Maritimes et Var : isolation, audit et accompagnement aux aides selon votre éligibilité. Devis gratuit."
 
 export const metadata: Metadata = {
-  title: "Rénovation Énergétique — Isolation, PAC, Audit",
-  description: "Rénovation énergétique globale en Alpes-Maritimes et Var : isolation, audit et accompagnement aux aides selon votre éligibilité. Devis gratuit.",
+  title: pageTitle,
+  description: pageDescription,
   alternates: { canonical: '/renovation-energetique/' },
 }
 
@@ -16,6 +20,18 @@ export default function RenovationHub() {
   return (
     <>
       <Header />
+      <WebPageJsonLd
+        path="/renovation-energetique/"
+        title={pageTitle}
+        description={pageDescription}
+        breadcrumbs={[{ name: 'Accueil', url: '/' }, { name: 'Rénovation énergétique', url: '/renovation-energetique/' }]}
+      />
+      <ServiceJsonLd
+        path="/renovation-energetique/"
+        name="Rénovation énergétique globale"
+        description={pageDescription}
+        serviceType="Rénovation énergétique"
+      />
       <Breadcrumb items={[{ label: 'Accueil', href: '/' }, { label: 'Rénovation énergétique' }]} />
       <PageHero eyebrow="Rénovation globale" title="Rénovation énergétique globale" subtitle="Isolation et audit énergétique — un projet cadré avec étude des aides disponibles" />
 
@@ -39,7 +55,7 @@ export default function RenovationHub() {
       </ContentSection>
 
       <section className="bg-green py-16 px-6 md:px-10 text-center">
-        <h2 className="text-white text-2xl font-bold mb-6">Demandez votre audit énergétique gratuit</h2>
+        <h2 className="text-white text-2xl font-bold mb-6">Demandez votre audit énergétique</h2>
         <a href="/contact/" className="bg-ink hover:bg-ink/85 transition-colors text-white text-[13px] font-semibold uppercase tracking-[0.08em] px-7 py-4 rounded-full inline-block">
           Devis gratuit
         </a>

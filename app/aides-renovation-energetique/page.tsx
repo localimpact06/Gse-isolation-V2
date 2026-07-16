@@ -4,10 +4,14 @@ import Footer from '@/components/Footer'
 import PageHero from '@/components/PageHero'
 import Breadcrumb from '@/components/Breadcrumb'
 import ContentSection from '@/components/ContentSection'
+import { ServiceJsonLd, WebPageJsonLd } from '@/components/seo/PageJsonLd'
+
+const pageTitle = "Aides rénovation énergétique 2026"
+const pageDescription = "MaPrimeRénov', CEE, Éco-PTZ, TVA réduite : les aides 2026 à étudier selon votre projet de rénovation énergétique."
 
 export const metadata: Metadata = {
-  title: "Aides Rénovation Énergétique 2026 — GSE Isolation",
-  description: "MaPrimeRénov', CEE, Éco-PTZ, TVA réduite : les aides 2026 à étudier selon votre projet de rénovation énergétique.",
+  title: pageTitle,
+  description: pageDescription,
   alternates: { canonical: '/aides-renovation-energetique/' },
 }
 
@@ -15,6 +19,18 @@ export default function AidesPage() {
   return (
     <>
       <Header />
+      <WebPageJsonLd
+        path="/aides-renovation-energetique/"
+        title={pageTitle}
+        description={pageDescription}
+        breadcrumbs={[{ name: 'Accueil', url: '/' }, { name: 'Aides rénovation énergétique', url: '/aides-renovation-energetique/' }]}
+      />
+      <ServiceJsonLd
+        path="/aides-renovation-energetique/"
+        name="Accompagnement aux aides financières"
+        description={pageDescription}
+        serviceType="Accompagnement administratif rénovation énergétique"
+      />
       <Breadcrumb items={[{ label: 'Accueil', href: '/' }, { label: 'Aides & financement' }]} />
       <PageHero eyebrow="Financement" title="Aides rénovation énergétique 2026" subtitle="MaPrimeRénov’, CEE, TVA réduite et Éco-PTZ à étudier selon votre situation" />
 

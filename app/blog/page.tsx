@@ -5,10 +5,14 @@ import Footer from '@/components/Footer'
 import PageHero from '@/components/PageHero'
 import Breadcrumb from '@/components/Breadcrumb'
 import Reveal from '@/components/Reveal'
+import { WebPageJsonLd } from '@/components/seo/PageJsonLd'
+
+const pageTitle = "Guides & Actualités de la Rénovation Énergétique"
+const pageDescription = "Conseils, prix et guides pratiques sur l'isolation, les pompes à chaleur, les aides MaPrimeRénov' et la rénovation énergétique."
 
 export const metadata: Metadata = {
-  title: "Guides & Actualités de la Rénovation Énergétique",
-  description: "Conseils, prix et guides pratiques sur l'isolation, les pompes à chaleur, les aides MaPrimeRénov' et la rénovation énergétique.",
+  title: pageTitle,
+  description: pageDescription,
   alternates: { canonical: '/blog/' },
 }
 
@@ -21,6 +25,12 @@ export default function BlogIndex() {
   return (
     <>
       <Header />
+      <WebPageJsonLd
+        path="/blog/"
+        title={pageTitle}
+        description={pageDescription}
+        breadcrumbs={[{ name: 'Accueil', url: '/' }, { name: 'Blog', url: '/blog/' }]}
+      />
       <Breadcrumb items={[{ label: 'Accueil', href: '/' }, { label: 'Blog' }]} />
       <PageHero eyebrow="Ressources" title="Guides & actualités" subtitle="Conseils pratiques et guides détaillés sur la rénovation énergétique." />
 

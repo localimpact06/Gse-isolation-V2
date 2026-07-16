@@ -1,6 +1,7 @@
 'use client'
 import { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
+import { company as companyInfo, formatPhone, phoneHref } from '@/lib/company'
 
 export default function ContactForm() {
   const [sent, setSent] = useState(false)
@@ -52,9 +53,9 @@ export default function ContactForm() {
             Le formulaire est validé, mais aucun service d’envoi n’est encore connecté. Contactez GSE directement pour finaliser votre demande.
           </p>
           <div className="flex flex-col gap-3">
-            <a href="tel:0422138611" className="text-xl font-semibold text-white">04 22 13 86 11</a>
+            <a href={phoneHref()} className="text-xl font-semibold text-white">{formatPhone()}</a>
             <a
-              href={`mailto:sf.gse.ecologie@gmail.com?subject=Demande%20de%20devis%20GSE%20Isolation&body=Nom%20:%20${encodeURIComponent(nom)}%0AT%C3%A9l%C3%A9phone%20:%20${encodeURIComponent(tel)}%0AE-mail%20:%20${encodeURIComponent(email)}%0ACode%20postal%20:%20${encodeURIComponent(cp)}%0AService%20:%20${encodeURIComponent(service)}`}
+              href={`mailto:${companyInfo.email}?subject=Demande%20de%20devis%20GSE%20Isolation&body=Nom%20:%20${encodeURIComponent(nom)}%0AT%C3%A9l%C3%A9phone%20:%20${encodeURIComponent(tel)}%0AE-mail%20:%20${encodeURIComponent(email)}%0ACode%20postal%20:%20${encodeURIComponent(cp)}%0AService%20:%20${encodeURIComponent(service)}`}
               className="text-sm font-semibold text-green underline"
             >
               Envoyer par e-mail

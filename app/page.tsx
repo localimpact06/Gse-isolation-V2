@@ -6,10 +6,15 @@ import Footer from '@/components/Footer'
 import HomeHero from '@/components/HomeHero'
 import Reveal from '@/components/Reveal'
 import Testimonials from '@/components/Testimonials'
+import { formatPhone, phoneHref } from '@/lib/company'
+import { WebPageJsonLd } from '@/components/seo/PageJsonLd'
+
+const pageTitle = "Rénovation énergétique à Nice"
+const pageDescription = "GSE Isolation : rénovation énergétique premium à Nice et en Alpes-Maritimes. Isolation, audit, aides financières et devis gratuit."
 
 export const metadata: Metadata = {
-  title: "Rénovation Énergétique à Nice — GSE Isolation",
-  description: "GSE Isolation : rénovation énergétique premium à Nice et en Alpes-Maritimes. Isolation, audit, aides financières et devis gratuit.",
+  title: pageTitle,
+  description: pageDescription,
   alternates: { canonical: '/' },
 }
 
@@ -30,6 +35,12 @@ export default function Home() {
   return (
     <>
       <Header />
+      <WebPageJsonLd
+        path="/"
+        title={pageTitle}
+        description={pageDescription}
+        breadcrumbs={[{ name: 'Accueil', url: '/' }]}
+      />
       <HomeHero />
 
       <main className="bg-[#F7F7F5] text-[#1E1E1E]">
@@ -172,8 +183,8 @@ export default function Home() {
                 </div>
                 <div className="rounded-[24px] border border-[#E8E8E3] bg-white p-6 shadow-[0_18px_70px_rgba(30,30,30,0.05)] lg:justify-self-end">
                   <span className="block text-[11px] font-bold uppercase tracking-[0.18em] text-[#6A6A6A]">Appel non surtaxé</span>
-                  <a href="tel:0422138611" className="mt-2 block text-3xl font-extrabold tracking-tight text-[#1E1E1E] transition-colors hover:text-green">
-                    04 22 13 86 11
+                  <a href={phoneHref()} className="mt-2 block text-3xl font-extrabold tracking-tight text-[#1E1E1E] transition-colors hover:text-green">
+                    {formatPhone()}
                   </a>
                 </div>
               </div>
