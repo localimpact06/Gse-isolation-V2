@@ -48,7 +48,7 @@ export default async function VillePage({ params }: { params: Promise<{ ville: s
     },
     {
       question: `Intervenez-vous à ${v.nom} ?`,
-      answer: `GSE Isolation intervient dans le secteur de ${v.nom} depuis son implantation à Saint-Paul-de-Vence, selon la faisabilité et le planning des équipes.`,
+      answer: `GSE Isolation intervient dans le secteur de ${v.nom} depuis son implantation à La Turbie, selon la faisabilité et le planning des équipes.`,
     },
   ]
 
@@ -90,7 +90,7 @@ export default async function VillePage({ params }: { params: Promise<{ ville: s
           <a href="/isolation-thermique/">isolation thermique</a> des murs, combles et planchers,{' '}
           <a href="/renovation-energetique/">rénovation énergétique globale</a> et{' '}
           <a href="/audit-energetique/">audit énergétique</a>.
-          Notre équipe locale, basée à Saint-Paul-de-Vence, se déplace dans tout le secteur de {v.nom} pour évaluer votre projet et vous accompagner de A à Z.
+          Notre équipe locale, basée à La Turbie, se déplace dans tout le secteur de {v.nom} pour évaluer votre projet et vous accompagner de A à Z.
         </p>
 
         <h2>Isolation thermique à {v.nom} : nos prix</h2>
@@ -130,7 +130,7 @@ export default async function VillePage({ params }: { params: Promise<{ ville: s
         <h2>Pourquoi choisir GSE Isolation à {v.nom} ?</h2>
         <p>
           GSE Isolation met l’accent sur la visite technique, le devis détaillé, le suivi du dossier d’aides et la qualité d’exécution du chantier.
-          Les qualifications, garanties et assurances applicables sont vérifiées et précisées sur les documents contractuels remis au client.
+          GSE Isolation dispose du label RGE - Reconnu Garant de l’environnement et de la qualification QUALIBAT-RGE. Les garanties et assurances applicables sont précisées sur les documents contractuels remis au client.
         </p>
 
         <h2>Avis clients</h2>

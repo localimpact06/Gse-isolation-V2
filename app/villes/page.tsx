@@ -27,7 +27,7 @@ export default function VillesIndex() {
         breadcrumbs={[{ name: 'Accueil', url: '/' }, { name: 'Villes', url: '/villes/' }]}
       />
       <Breadcrumb items={[{ label: 'Accueil', href: '/' }, { label: 'Nos villes' }]} />
-      <PageHero eyebrow="Zones d'intervention" title="Nos 20 villes" subtitle="Alpes-Maritimes et Var — équipe locale basée à Saint-Paul-de-Vence" />
+      <PageHero eyebrow="Zones d'intervention" title="Nos 20 villes" subtitle="Alpes-Maritimes et Var — équipe locale basée à La Turbie" />
 
       <section className="py-20 px-6 md:px-10">
         <div className="max-w-5xl mx-auto">

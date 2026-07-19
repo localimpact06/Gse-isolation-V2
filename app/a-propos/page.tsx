@@ -8,7 +8,7 @@ import Reveal from '@/components/Reveal'
 import { WebPageJsonLd } from '@/components/seo/PageJsonLd'
 
 const pageTitle = "À propos"
-const pageDescription = "GSE Isolation, entreprise spécialisée en rénovation énergétique à Saint-Paul-de-Vence, Alpes-Maritimes."
+const pageDescription = "GSE Isolation, entreprise spécialisée en rénovation énergétique à La Turbie, Alpes-Maritimes."
 
 export const metadata: Metadata = {
   title: pageTitle,
@@ -36,12 +36,12 @@ export default function AProposPage() {
       <ContentSection>
         <h2>Notre métier</h2>
         <p>
-          GSE Isolation est une entreprise spécialisée dans les travaux d'isolation thermique et la réalisation d'audits énergétiques, basée à Saint-Paul-de-Vence dans les Alpes-Maritimes. Nous intervenons sur l'ensemble de la côte, de Nice à Fréjus, pour accompagner les propriétaires dans l'amélioration de la performance énergétique de leur habitat.
+          GSE Isolation est une entreprise spécialisée dans les travaux d'isolation thermique et la réalisation d'audits énergétiques, basée à La Turbie dans les Alpes-Maritimes. Nous intervenons sur l'ensemble de la côte, de Nice à Fréjus, pour accompagner les propriétaires dans l'amélioration de la performance énergétique de leur habitat.
         </p>
 
         <h2>Garanties et qualifications</h2>
         <p>
-          Les qualifications, assurances et garanties applicables sont vérifiées selon la nature du chantier et précisées sur les devis, attestations et documents contractuels remis au client.
+          GSE Isolation dispose du label RGE - Reconnu Garant de l’environnement et de la qualification QUALIBAT-RGE. Les assurances et garanties applicables restent précisées sur les devis, attestations et documents contractuels remis au client.
         </p>
 
         <h2>Notre approche</h2>

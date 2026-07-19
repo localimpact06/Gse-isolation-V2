@@ -40,6 +40,11 @@ export default function Footer() {
           <div>
             <h4 className="text-white text-xs uppercase tracking-[0.15em] mb-5">Contact</h4>
             <p className="text-sm leading-relaxed mb-4">{formatAddress()}</p>
+            {company.certifications.length > 0 ? (
+              <p className="mb-4 text-xs font-semibold uppercase tracking-[0.12em] text-green">
+                {company.certifications.join(' · ')}
+              </p>
+            ) : null}
             <a href={phoneHref()} className="text-white text-lg font-semibold block mb-1">{formatPhone()}</a>
             <a href={`mailto:${company.email}`} className="text-sm text-white/55 transition-colors hover:text-white">{company.email}</a>
             <a

@@ -27,6 +27,36 @@ export function buildPostalAddress() {
   })
 }
 
+function buildOrganizationIdentifiers() {
+  const identifiers: JsonObject[] = []
+
+  if (company.siren) {
+    identifiers.push({
+      '@type': 'PropertyValue',
+      propertyID: 'SIREN',
+      value: company.siren,
+    })
+  }
+
+  if (company.siret) {
+    identifiers.push({
+      '@type': 'PropertyValue',
+      propertyID: 'SIRET',
+      value: company.siret,
+    })
+  }
+
+  if (company.rcsNumber && company.rcsCity) {
+    identifiers.push({
+      '@type': 'PropertyValue',
+      propertyID: 'RCS',
+      value: `${company.rcsNumber} R.C.S. ${company.rcsCity}`,
+    })
+  }
+
+  return identifiers
+}
+
 export function buildOrganization() {
   return compactObject({
     '@type': ['Organization', 'LocalBusiness'],
@@ -43,6 +73,10 @@ export function buildOrganization() {
     telephone: company.phone,
     email: company.email,
     address: buildPostalAddress(),
+    taxID: company.siren,
+    vatID: company.vatNumber,
+    identifier: buildOrganizationIdentifiers(),
+    award: [...company.certifications],
     areaServed: [...company.serviceAreas],
     sameAs: [...company.socialLinks],
   })

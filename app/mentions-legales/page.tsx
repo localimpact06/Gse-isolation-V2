@@ -37,6 +37,7 @@ export default function MentionsLegales() {
           {company.rcsNumber ? <li>RCS : {company.rcsNumber}{company.rcsCity ? ` R.C.S. ${company.rcsCity}` : ''}</li> : null}
           {company.vatNumber ? <li>Numéro de TVA intracommunautaire : {company.vatNumber}</li> : null}
           {company.shareCapital ? <li>Capital social : {company.shareCapital}</li> : null}
+          {company.certifications.length > 0 ? <li>Qualifications : {company.certifications.join(' · ')}</li> : null}
           <li>Téléphone : <a href={phoneHref()}>{formatPhone()}</a></li>
           <li>E-mail : <a href={`mailto:${company.email}`}>{company.email}</a></li>
         </ul>
