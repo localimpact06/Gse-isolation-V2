@@ -6,6 +6,7 @@ import Footer from '@/components/Footer'
 import HomeHero from '@/components/HomeHero'
 import Reveal from '@/components/Reveal'
 import Testimonials from '@/components/Testimonials'
+import RgeCertification, { RgeTrustStrip } from '@/components/trust/RgeCertification'
 import { formatPhone, phoneHref } from '@/lib/company'
 import { WebPageJsonLd } from '@/components/seo/PageJsonLd'
 
@@ -44,13 +45,13 @@ export default function Home() {
       <HomeHero />
 
       <main className="bg-[#F7F7F5] text-[#1E1E1E]">
-        <section className="px-6 py-24 md:px-10 lg:py-32">
-          <div className="mx-auto grid max-w-7xl grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-4">
-            {PROOFS.map((proof, index) => (
-              <Reveal key={proof.title} delay={index * 0.05}>
-                <ProofCard {...proof} />
-              </Reveal>
-            ))}
+        <RgeTrustStrip />
+
+        <section className="px-6 pb-24 pt-8 md:px-10 lg:pb-32">
+          <div className="mx-auto max-w-5xl">
+            <Reveal>
+              <RgeCertification />
+            </Reveal>
           </div>
         </section>
 
@@ -138,12 +139,12 @@ export default function Home() {
         <section className="bg-[#FAFAF8] px-6 py-28 md:px-10 lg:py-40">
           <div className="mx-auto grid max-w-7xl gap-14 lg:grid-cols-[0.92fr_1.08fr] lg:items-center">
             <Reveal>
-              <SectionEyebrow>Pourquoi GSE</SectionEyebrow>
+              <SectionEyebrow>Pourquoi choisir GSE Isolation ?</SectionEyebrow>
               <h2 className="mt-5 max-w-xl text-4xl font-extrabold leading-[1.04] tracking-tightest md:text-5xl">
-                Une équipe locale, un diagnostic clair, un chantier tenu.
+                Une entreprise locale, certifiée et organisée.
               </h2>
               <p className="mt-7 max-w-xl text-[15px] leading-8 text-[#6A6A6A]">
-                Le but n’est pas d’empiler des travaux. Le but est de comprendre le logement, cadrer le budget et intervenir proprement.
+                GSE Isolation cadre chaque projet avec une lecture technique, un accompagnement clair et des travaux suivis du premier échange à la réception.
               </p>
               <div className="mt-10 grid gap-4 sm:grid-cols-2">
                 {TRUST_ITEMS.map((item) => (
@@ -304,13 +305,6 @@ export default function Home() {
   )
 }
 
-const PROOFS = [
-  { title: 'Diagnostic sérieux', text: 'Une lecture technique avant de proposer les travaux.', icon: <IconHouse /> },
-  { title: 'Chantier suivi', text: 'Un interlocuteur clair, des étapes lisibles et une réception propre.', icon: <IconCheck /> },
-  { title: 'Aides cadrées', text: 'MaPrimeRénov’, CEE et TVA réduite étudiées dès le départ.', icon: <IconPercent /> },
-  { title: 'Zone 06 / 83', text: 'Une équipe locale pour les Alpes-Maritimes et le Var.', icon: <IconUsers /> },
-]
-
 const SOLUTION_CARDS = [
   {
     title: 'Isolation des combles',
@@ -382,12 +376,26 @@ const WHY_GSE = {
 }
 
 const TRUST_ITEMS = [
-  { title: 'Expertise', text: 'Lecture technique du logement avant de parler devis.' },
-  { title: 'Accompagnement', text: 'Étapes simples, interlocuteur identifié et suivi clair.' },
-  { title: 'Matériaux performants', text: 'Choix adaptés au bâti, au climat local et à l’usage.' },
-  { title: 'Chantier propre', text: 'Protection, méthode, finitions et réception suivies.' },
-  { title: 'Aides financières', text: 'Dispositifs vérifiés avant de figer le budget.' },
-  { title: 'Devis gratuit', text: 'Proposition lisible, détaillée et sans engagement.' },
+  {
+    title: 'Certification RGE',
+    text: 'Travaux réalisés conformément aux exigences de qualité de la rénovation énergétique.',
+    icon: <IconAward />,
+  },
+  {
+    title: 'Entreprise locale',
+    text: 'Interventions dans les Alpes-Maritimes et le Var, avec un ancrage à La Turbie.',
+    icon: <IconHouse />,
+  },
+  {
+    title: 'Accompagnement complet',
+    text: 'Étude, aides financières, réalisation et suivi du chantier.',
+    icon: <IconCheck />,
+  },
+  {
+    title: 'Satisfaction client',
+    text: 'Avis Google et Trustpilot affichés par source, sans mélange des provenances.',
+    icon: <IconUsers />,
+  },
 ]
 
 const PROCESS_STEPS = [
@@ -497,22 +505,12 @@ function BeforeAfterPanel({
   )
 }
 
-function ProofCard({ title, text, icon }: { title: string; text: string; icon: React.ReactNode }) {
+function TrustPoint({ title, text, icon }: { title: string; text: string; icon: React.ReactNode }) {
   return (
-    <div className="flex h-full gap-4 rounded-[24px] border border-[#E8E8E3] bg-white p-6 shadow-[0_16px_55px_rgba(30,30,30,0.045)] transition-all duration-500 hover:-translate-y-1 hover:border-green/25 hover:shadow-[0_26px_70px_rgba(30,30,30,0.08)]">
-      <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-green/10">{icon}</div>
-      <div>
-        <h3 className="mb-2 text-[14px] font-extrabold">{title}</h3>
-        <p className="text-[13px] leading-6 text-[#6A6A6A]">{text}</p>
-      </div>
-    </div>
-  )
-}
-
-function TrustPoint({ title, text }: { title: string; text: string }) {
-  return (
-    <div className="rounded-[24px] border border-[#E8E8E3] bg-white p-5 shadow-[0_14px_50px_rgba(30,30,30,0.045)]">
-      <span className="mb-4 flex h-8 w-8 items-center justify-center rounded-full bg-green/10 text-sm font-extrabold text-green">✓</span>
+    <div className="rounded-[24px] border border-[#E8E8E3] bg-white p-5 shadow-[0_14px_50px_rgba(30,30,30,0.045)] transition-all duration-500 hover:-translate-y-1 hover:border-green/25 hover:shadow-[0_24px_70px_rgba(30,30,30,0.075)]">
+      <span className="mb-4 flex h-9 w-9 items-center justify-center rounded-full bg-green/10 text-sm font-extrabold text-green" aria-hidden="true">
+        {icon}
+      </span>
       <h3 className="text-[15px] font-extrabold">{title}</h3>
       <p className="mt-2 text-[13px] leading-6 text-[#6A6A6A]">{text}</p>
     </div>
@@ -554,17 +552,17 @@ function hasPublicImage(src: string) {
 }
 
 function IconHouse() {
-  return <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#3FA66B" strokeWidth="1.4"><path d="M3 11.5 12 4l9 7.5" /><path d="M5 10v9.5h14V10" /><path d="M9.5 19.5v-5h5v5" /></svg>
-}
-
-function IconPercent() {
-  return <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#3FA66B" strokeWidth="1.4"><circle cx="7" cy="7" r="2.3" /><circle cx="17" cy="17" r="2.3" /><line x1="6" y1="18" x2="18" y2="6" /></svg>
+  return <svg aria-hidden="true" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#3FA66B" strokeWidth="1.4"><path d="M3 11.5 12 4l9 7.5" /><path d="M5 10v9.5h14V10" /><path d="M9.5 19.5v-5h5v5" /></svg>
 }
 
 function IconCheck() {
-  return <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#3FA66B" strokeWidth="1.4"><path d="M5 13l4.5 4.5L19 7.5" /></svg>
+  return <svg aria-hidden="true" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#3FA66B" strokeWidth="1.4"><path d="M5 13l4.5 4.5L19 7.5" /></svg>
 }
 
 function IconUsers() {
-  return <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#3FA66B" strokeWidth="1.4"><circle cx="9" cy="8" r="3" /><path d="M3 20c0-3.5 2.7-6 6-6s6 2.5 6 6" /><circle cx="17" cy="9" r="2.3" /><path d="M21 20c0-2.6-1.7-4.7-4-5.4" /></svg>
+  return <svg aria-hidden="true" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#3FA66B" strokeWidth="1.4"><circle cx="9" cy="8" r="3" /><path d="M3 20c0-3.5 2.7-6 6-6s6 2.5 6 6" /><circle cx="17" cy="9" r="2.3" /><path d="M21 20c0-2.6-1.7-4.7-4-5.4" /></svg>
+}
+
+function IconAward() {
+  return <svg aria-hidden="true" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#3FA66B" strokeWidth="1.4"><circle cx="12" cy="8" r="4.2" /><path d="m9.5 12-1.2 7 3.7-2 3.7 2-1.2-7" /><path d="m9.6 8 1.5 1.5 3.4-3.5" /></svg>
 }

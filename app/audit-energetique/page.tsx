@@ -4,6 +4,7 @@ import Footer from '@/components/Footer'
 import PageHero from '@/components/PageHero'
 import Breadcrumb from '@/components/Breadcrumb'
 import ContentSection from '@/components/ContentSection'
+import RgeCertification from '@/components/trust/RgeCertification'
 import { ServiceJsonLd, WebPageJsonLd } from '@/components/seo/PageJsonLd'
 
 const pageTitle = "Audit Énergétique — Diagnostic de Projet"
@@ -33,6 +34,12 @@ export default function AuditPage() {
       />
       <Breadcrumb items={[{ label: 'Accueil', href: '/' }, { label: 'Audit énergétique' }]} />
       <PageHero eyebrow="Première étape" title="Audit énergétique" subtitle="Diagnostic complet de votre habitation avec demande de devis" />
+
+      <section className="bg-[#F7F7F5] px-6 py-10 md:px-10">
+        <div className="mx-auto max-w-5xl">
+          <RgeCertification compact />
+        </div>
+      </section>
 
       <ContentSection>
         <h2>L'étude énergétique, qu'est-ce que c'est ?</h2>

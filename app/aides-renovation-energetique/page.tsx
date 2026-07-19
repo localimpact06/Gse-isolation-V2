@@ -4,6 +4,7 @@ import Footer from '@/components/Footer'
 import PageHero from '@/components/PageHero'
 import Breadcrumb from '@/components/Breadcrumb'
 import ContentSection from '@/components/ContentSection'
+import RgeCertification from '@/components/trust/RgeCertification'
 import { ServiceJsonLd, WebPageJsonLd } from '@/components/seo/PageJsonLd'
 
 const pageTitle = "Aides rénovation énergétique 2026"
@@ -33,6 +34,12 @@ export default function AidesPage() {
       />
       <Breadcrumb items={[{ label: 'Accueil', href: '/' }, { label: 'Aides & financement' }]} />
       <PageHero eyebrow="Financement" title="Aides rénovation énergétique 2026" subtitle="MaPrimeRénov’, CEE, TVA réduite et Éco-PTZ à étudier selon votre situation" />
+
+      <section className="bg-[#F7F7F5] px-6 py-10 md:px-10">
+        <div className="mx-auto max-w-5xl">
+          <RgeCertification compact />
+        </div>
+      </section>
 
       <ContentSection>
         <h2 id="maprimerenov">MaPrimeRénov'</h2>

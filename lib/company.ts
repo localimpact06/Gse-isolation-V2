@@ -37,6 +37,8 @@ export const company = {
   },
   socialLinks: [],
   googleBusinessProfile: null,
+  googleReviewsUrl: null as string | null,
+  trustpilotUrl: null as string | null,
   serviceAreas: ['Alpes-Maritimes', 'Var'],
 } as const
 

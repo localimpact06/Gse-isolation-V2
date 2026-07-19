@@ -5,6 +5,7 @@ import Footer from '@/components/Footer'
 import PageHero from '@/components/PageHero'
 import Breadcrumb from '@/components/Breadcrumb'
 import ContentSection from '@/components/ContentSection'
+import RgeCertification from '@/components/trust/RgeCertification'
 import { ServiceJsonLd, WebPageJsonLd } from '@/components/seo/PageJsonLd'
 
 const pageTitle = "Rénovation Énergétique — Isolation, Audit"
@@ -34,6 +35,12 @@ export default function RenovationHub() {
       />
       <Breadcrumb items={[{ label: 'Accueil', href: '/' }, { label: 'Rénovation énergétique' }]} />
       <PageHero eyebrow="Rénovation globale" title="Rénovation énergétique globale" subtitle="Isolation et audit énergétique — un projet cadré avec étude des aides disponibles" />
+
+      <section className="bg-[#F7F7F5] px-6 py-10 md:px-10">
+        <div className="mx-auto max-w-5xl">
+          <RgeCertification compact />
+        </div>
+      </section>
 
       <ContentSection>
         <h2>Qu'est-ce qu'une rénovation énergétique globale ?</h2>

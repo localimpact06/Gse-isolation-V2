@@ -56,8 +56,11 @@ export default function Footer() {
           </div>
         </div>
 
-        <div className="border-t border-white/10 pt-8 flex flex-col md:flex-row justify-between items-center gap-4 text-xs text-white/30">
+        <div className="border-t border-white/10 pt-8 flex flex-col md:flex-row justify-between items-center gap-4 text-center text-xs text-white/30 md:text-left">
           <span>© 2026 {company.tradeName}{legalNumber ? ` — ${legalNumber}` : ''}</span>
+          {company.certifications.length > 0 ? (
+            <span className="text-white/40">Certification RGE — Entreprise spécialisée en rénovation énergétique.</span>
+          ) : null}
           <span>{company.serviceAreas.join(' · ')}</span>
         </div>
       </div>

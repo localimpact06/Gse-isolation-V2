@@ -4,6 +4,7 @@ import Footer from '@/components/Footer'
 import Breadcrumb from '@/components/Breadcrumb'
 import ContactForm from '@/components/ContactForm'
 import Reveal from '@/components/Reveal'
+import RgeCertification from '@/components/trust/RgeCertification'
 import { formatPhone, phoneHref } from '@/lib/company'
 import { WebPageJsonLd } from '@/components/seo/PageJsonLd'
 
@@ -36,6 +37,9 @@ export default function ContactPage() {
             </h1>
             <p className="text-white/50 text-[15px]">Remplissez ce court formulaire afin d'obtenir votre devis gratuit, sans engagement.</p>
           </Reveal>
+        </div>
+        <div className="mx-auto mb-12 max-w-5xl">
+          <RgeCertification compact />
         </div>
         <Reveal delay={0.1}>
           <ContactForm />

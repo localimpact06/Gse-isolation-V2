@@ -5,6 +5,7 @@ import PageHero from '@/components/PageHero'
 import Breadcrumb from '@/components/Breadcrumb'
 import ContentSection from '@/components/ContentSection'
 import Reveal from '@/components/Reveal'
+import RgeCertification from '@/components/trust/RgeCertification'
 import { servicesIso } from '@/lib/services-iso'
 import { WebPageJsonLd } from '@/components/seo/PageJsonLd'
 
@@ -29,6 +30,12 @@ export default function IsolationPage() {
       />
       <Breadcrumb items={[{ label: 'Accueil', href: '/' }, { label: 'Isolation thermique' }]} />
       <PageHero eyebrow="Nos solutions" title="Isolation thermique" subtitle="Murs, combles, planchers bas — aides étudiées selon votre projet" />
+
+      <section className="bg-[#F7F7F5] px-6 py-10 md:px-10">
+        <div className="mx-auto max-w-5xl">
+          <RgeCertification compact />
+        </div>
+      </section>
 
       <section className="py-20 px-6 md:px-10">
         <div className="max-w-7xl mx-auto">
